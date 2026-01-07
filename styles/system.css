@@ -95,3 +95,19 @@ nav {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-03);
 }
+
+/* style hero */
+.infoName {
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.infosup {
+    display: flex;
+    gap: 40px;
+}
