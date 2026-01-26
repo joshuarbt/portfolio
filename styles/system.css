@@ -97,6 +97,11 @@ nav {
 }
 
 /* style hero */
+
+.hero-section {
+    width: 80vw;
+}
+
 .infoName {
     margin-top: 100px;
     margin-bottom: 50px;
