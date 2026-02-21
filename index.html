@@ -1,36 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JOSHFOLIO</title>
+
+    <!-- fichier styles -->
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/system.css">
+
+    <!-- fichier scripts -->
+    <script src="scripts/script.js" defer></script>
 </head>
+
 <body>
     <nav>
-        
+
         <ul class="nav-links">
             <li><a href="#about">[ PROJETS ]</a></li>
             <li><a href="#works">[ PHOTOS ]</a></li>
-            <div class="logo">JOSHUA RABOTEAU</div>
+            <div class="logo">JOSH</div>
             <li><a href="#services">[ À PROPOS ]</a></li>
             <li><a href="#contact">[ MON CV ]</a></li>
         </ul>
     </nav>
 
     <main>
-    <!-- hero -->
-    <div class="container">
-        <section class="hero-section">
-            <div class="infoName">
-                <div class="h3">Nickname : DCd0ck</div>
-                <span class="name-title">JOSHUA</span>
-                <span class="surname-title">RABOTEAU</span>
-                <div class="h3">Age : <span id="age"></span></div>
-            </div>
-        </section>
-    </div>
+        <!-- hero -->
+        <div class="container">
+            <section class="hero-section">
+                <div class="infoName">
+                    <div class="h3" id="nickname">Nickname : DCd0ck</div>
+                    <span class="name" id="firstName">JOSHUA</span> <br>
+                    <span class="name" id="lastName">RABOTEAU</span>
+                    <div class="h3" id="age"><span id="age"></span></div>
+                </div>
+                <div class="infoPhoto">
+                    <div class="photo-id"></div>
+                </div>
+            </section>
+        </div>
 
-</main>
+        <!-- compétences -->
+        <div class="container">
+            <section class="skills-section">
+                <div class="h3">DESIGN GRAPHIQUE</div>
+                <div class="h3">PHOTO</div>
+                <div class="h3">VIDEO</div>
+                <div class="h3">MODELISATION 3D</div>
+
+        </div>
+
+    </main>
 
 </body>
+
 </html>

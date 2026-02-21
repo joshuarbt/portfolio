@@ -13,4 +13,4 @@ function getAge(date) {
     }
 }
 
-document.getElementById("age").textContent = getAge(birthDate);
+document.getElementById("age").textContent = 'Age : ' + getAge(birthDate) + ' yo';

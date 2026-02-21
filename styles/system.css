@@ -6,13 +6,12 @@ body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background-color: var(--color-01);
     color: var(--color-02);
-    line-height: 1.6;
 }
 
 /* Navigation */
 nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 25px 60px;
     background-color: var(--color-01);
@@ -31,7 +30,7 @@ nav {
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 40px;
+    gap: 100px;
 }
 
 .nav-links a {
@@ -47,37 +46,6 @@ nav {
     color: var(--color-03);
 }
 
-.contact-btn {
-    text-decoration: none;
-    color: var(--color-02);
-    border: 2px solid var(--color-02);
-    padding: 8px 18px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    font-weight: 400;
-    transition: all 0.3s ease;
-}
-
-.contact-btn:hover {
-    background-color: var(--color-03);
-    color: var(--color-02);
-}
-
-/* Animations subtiles */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hero-content > * {
-    animation: fadeIn 0.8s ease-out forwards;
-}
 
 /* Scrollbar personnalisée */
 ::-webkit-scrollbar {
@@ -96,23 +64,47 @@ nav {
     background: var(--color-03);
 }
 
-/* style hero */
 
+/* hero section */
 .hero-section {
-    width: 80vw;
-}
-
-.infoName {
     margin-top: 100px;
-    margin-bottom: 50px;
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    gap: 200px;
+    padding: 100px 20px;
 }
 
-.infosup {
-    display: flex;
-    gap: 40px;
+.h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.name {
+    font-size: 96px;
+    font-weight: 700;
+}
+
+#lastName {
+    padding-left: 200px;
+}
+
+#nickname{
+    text-align: start;
+}
+
+#age{
+    text-align: end;
+}
+
+
+.photo-id {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--color-03);
+    position: relative;
+    width: 260px;
+    height: 260px;
 }
