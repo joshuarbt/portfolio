@@ -81,7 +81,7 @@ nav {
     margin-top: 30px;
 }
 
-.name {
+.h1 {
     font-size: 96px;
     font-weight: 700;
 }
@@ -107,4 +107,14 @@ nav {
     position: relative;
     width: 260px;
     height: 260px;
+}
+
+
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    padding: 50px 20px;
 }
