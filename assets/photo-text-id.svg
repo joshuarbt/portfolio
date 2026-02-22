@@ -1,0 +1,15 @@
+<svg>
+    <defs>
+      <path id="text-circle"
+            d="M150,150
+                m-120,0
+                a120,120 0 1,1 240,0
+                a120,120 0 1,1 -240,0" />
+    </defs>
+
+    <text font-size="20" letter-spacing="3">
+      <textPath href="#text-circle">
+        • MODELISATION 3D • DESIGN GRAPHIQUE • PHOTOS • VIDEOS
+      </textPath>
+    </text>
+</svg>
