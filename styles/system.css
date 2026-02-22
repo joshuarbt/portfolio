@@ -90,14 +90,21 @@ nav {
     padding-left: 200px;
 }
 
-#nickname{
+#nickname {
     text-align: start;
 }
 
-#age{
+#age {
     text-align: end;
 }
 
+
+
+.infoPhoto {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
 
 .photo-id {
     width: 100%;
@@ -107,6 +114,31 @@ nav {
     position: relative;
     width: 260px;
     height: 260px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.circle-text-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.rotating-text {
+    animation: rotateText 30s linear infinite;
+    transform-origin: 50% 50%;
+}
+
+@keyframes rotateText {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 
