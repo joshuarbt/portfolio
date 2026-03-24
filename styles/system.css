@@ -17,20 +17,24 @@ nav {
     background-color: var(--color-01);
     border-bottom: 2px solid var(--color-02);
     position: sticky;
-    /* top: 0;
-    z-index: 1000; */
+    height: 100px;
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
 
 .nav-links {
     display: flex;
     list-style: none;
     gap: 100px;
+}
+
+.logo-wrapper {
+    width: 100px;
+}
+
+.logo-nav {
+    position: relative;
+    top: -50px;
+    height: 100px;
 }
 
 .nav-links a {
