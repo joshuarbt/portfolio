@@ -74,7 +74,7 @@ viewport.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (!isZoomReady) return;
 
-    const zoomIntensity = 0.1;
+    const zoomIntensity = 0.05;
     let previousScale = targetScale;
 
     if (e.deltaY < 0) targetScale += zoomIntensity;
