@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Fresque</title>
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; /* Empêche les barres de défilement */
+            background-color: #1a1a1a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none; /* Empêche la sélection de texte gênante lors du clic */
+        }
+
+        #viewport {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            cursor: grab;
+        }
+
+        #viewport:active {
+            cursor: grabbing;
+        }
+
+        #fresco {
+            position: absolute;
+            width: 5000px; 
+            height: 5000px;
+            /* Centre la grande toile de 5000px au milieu de l'écran */
+            left: calc(50vw - 2500px);
+            top: calc(50vh - 2500px);
+            
+            transform: scale(0.2); /* Départ très dézoomé */
+            transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transform-origin: center center;
+        }
+
+        #intro-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            z-index: 100;
+        }
+
+        .island {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+        }
+
+        .island-center-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background: #333;
+            padding: 20px;
+            border-radius: 15px;
+            z-index: 10;
+        }
+
+        /* Style commun des blocs */
+        .photo {
+            position: absolute;
+            border: 6px solid white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, z-index 0s;
+        }
+
+        .photo:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 20;
+            cursor: pointer;
+        }
+
+        /* Tailles et couleurs des blocs remplaçant les photos */
+        .block-1 { width: 200px; height: 150px; background-color: #ff6b6b; }
+        .block-2 { width: 150px; height: 200px; background-color: #4ecdc4; }
+        .block-3 { width: 180px; height: 180px; background-color: #ffe66d; }
+        .block-4 { width: 220px; height: 140px; background-color: #1a535c; }
+
+        /* Positionnement éclaté autour du texte */
+        .p1 { top: 10%; left: 10%; transform: rotate(-10deg); }
+        .p2 { top: 15%; right: 5%; transform: rotate(12deg); }
+        .p3 { bottom: 5%; left: 15%; transform: rotate(8deg); }
+        .p4 { bottom: 15%; right: 10%; transform: rotate(-5deg); }
+    </style>
+</head>
+<body>
+
+    <div id="viewport">
+        <div id="fresco">
+            
+            <div id="intro-text">
+                <h1>Mon Univers</h1>
+                <p>Cliquez et glissez pour explorer la fresque.</p>
+            </div>
+
+            <div class="island" style="top: 15%; left: 20%;">
+                <div class="island-center-text">
+                    <h2>Projet A</h2>
+                    <p>Description du projet</p>
+                </div>
+                <div class="photo block-1 p1"></div>
+                <div class="photo block-2 p2"></div>
+                <div class="photo block-3 p3"></div>
+                <div class="photo block-4 p4"></div>
+            </div>
+
+            <div class="island" style="top: 60%; left: 70%;">
+                <div class="island-center-text">
+                    <h2>Projet B</h2>
+                    <p>Une autre aventure</p>
+                </div>
+                <div class="photo block-2 p1"></div>
+                <div class="photo block-4 p2"></div>
+                <div class="photo block-1 p3"></div>
+                <div class="photo block-3 p4"></div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+    const fresco = document.getElementById('fresco');
+    const viewport = document.getElementById('viewport');
+
+    let currentScale = 0.2; 
+    let isZoomReady = false; // Sécurité pour bloquer la molette pendant l'animation de départ
+    
+    // 1. Zoom au lancement
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            currentScale = 1;
+            fresco.style.transform = `scale(${currentScale})`; 
+            
+            // Fin de l'animation de départ
+            setTimeout(() => {
+                // On ajoute 'left' et 'top' à la transition pour que le mouvement de compensation 
+                // du zoom (vers la souris) soit aussi fluide que le zoom lui-même.
+                fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+                isZoomReady = true; // On autorise le scroll
+            }, 2500);
+        }, 100);
+    });
+
+    // 2. Navigation à la souris (Drag & Pan)
+    let isDragging = false;
+    let startX, startY;
+    let initialLeft, initialTop;
+
+    viewport.addEventListener('mousedown', (e) => {
+        e.preventDefault(); // Bloque la sélection de texte native
+        isDragging = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        const style = window.getComputedStyle(fresco);
+        initialLeft = parseFloat(style.left);
+        initialTop = parseFloat(style.top);
+        
+        fresco.style.transition = 'none'; // Coupe les transitions pour un suivi du clic immédiat
+        viewport.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        
+        fresco.style.left = `${initialLeft + dx}px`;
+        fresco.style.top = `${initialTop + dy}px`;
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        viewport.style.cursor = 'grab';
+        if(isZoomReady) {
+            // Rétablit les transitions rapides pour la molette
+            fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+        }
+    });
+
+    window.addEventListener('mouseleave', () => {
+        isDragging = false;
+        viewport.style.cursor = 'grab';
+        if(isZoomReady) {
+            fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+        }
+    });
+
+    // 3. Zoom ciblé vers le curseur (Scroll)
+    viewport.addEventListener('wheel', (e) => {
+        e.preventDefault(); 
+        if (!isZoomReady) return; // Bloque le zoom manuel pendant l'intro
+
+        const zoomIntensity = 0.1; 
+        let previousScale = currentScale;
+
+        // Détection du sens de la molette
+        if (e.deltaY < 0) {
+            currentScale += zoomIntensity;
+        } else {
+            currentScale -= zoomIntensity;
+        }
+
+        // Limites du zoom
+        currentScale = Math.min(Math.max(0.3, currentScale), 3);
+
+        // Si on a atteint la limite, on ne calcule pas le reste pour éviter un décalage
+        if (previousScale === currentScale) return;
+
+        // --- MATHÉMATIQUES DU ZOOM CIBLÉ ---
+        // 2500 correspond au centre exact de la toile (qui fait 5000x5000px)
+        const originX = 2500;
+        const originY = 2500;
+
+        const style = window.getComputedStyle(fresco);
+        let currentLeft = parseFloat(style.left);
+        let currentTop = parseFloat(style.top);
+
+        // Calcul de la distance entre la souris et le centre de la fresque
+        const dx = e.clientX - currentLeft - originX;
+        const dy = e.clientY - currentTop - originY;
+
+        // Calcul du décalage (offset) de left et top pour compenser l'agrandissement
+        const newLeft = currentLeft + dx * (1 - currentScale / previousScale);
+        const newTop = currentTop + dy * (1 - currentScale / previousScale);
+
+        // Application instantanée des nouvelles coordonnées et du zoom
+        fresco.style.left = `${newLeft}px`;
+        fresco.style.top = `${newTop}px`;
+        fresco.style.transform = `scale(${currentScale})`;
+
+    }, { passive: false });
+
+</script>
+
+</body>
+</html>
