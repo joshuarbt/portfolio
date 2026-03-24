@@ -1,7 +1,6 @@
 /* Import de la police Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
 
-
 body {
     font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background-color: var(--color-01);
@@ -13,30 +12,43 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     padding: 2rem 3.75rem; /* C'est ce padding qui va dicter l'épaisseur de ta barre */
     /* SUPPRIME la ligne : height: 6.25rem; */
+=======
+    padding: 1.5625rem 3.75rem; /* 25px 60px */
+>>>>>>> branche2
     background-color: var(--color-01);
-    border-bottom: 2px solid var(--color-02);
+    border-bottom: 2px solid var(--color-02); /* Les bordures restent souvent en px */
     position: sticky;
+<<<<<<< HEAD
     top: 0; /* Petit bonus : indispensable pour que le "sticky" fonctionne bien ! */
     z-index: 1000; /* Assure que la nav reste au-dessus de tout le reste quand tu scrolles */
+=======
+    height: 6.25rem; /* 100px */
+>>>>>>> branche2
 }
-
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 100px;
+    gap: 6.25rem; /* 100px */
 }
 
 .logo-wrapper {
     width: 6.25rem; 
+<<<<<<< HEAD
     position: relative; 
     /* Tu peux enlever les display: flex ici, car l'enfant est absolu et n'en tient plus compte */
+=======
+    height: 6.25rem; /* On force la hauteur pour stabiliser l'alignement des autres liens */
+    position: relative; 
+>>>>>>> branche2
 }
 
 .logo-nav {
     position: absolute;
+<<<<<<< HEAD
     height: 6.25rem;
     
     /* 1. LA MAGIE DU CENTRAGE HORIZONTAL */
@@ -45,13 +57,21 @@ nav {
     
     /* 2. L'AJUSTEMENT VERTICAL */
     top: -4rem; /* Pour le descendre un peu. N'hésite pas à tester -1rem, -2rem ou -2.5rem pour trouver la hauteur parfaite. */
+=======
+    /* On augmente la valeur négative pour le faire sortir du haut. 
+       N'hésite pas à ajuster ce -5.5rem (environ -88px) si tu le veux plus ou moins haut ! */
+    top: -3.5rem; 
+    left: 0;
+    width: 100%; /* S'assure qu'il prenne bien la largeur du wrapper */
+    height: 100%;
+>>>>>>> branche2
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--color-02);
-    font-size: 16px;
-    letter-spacing: 1px;
+    font-size: 1rem; /* 16px */
+    letter-spacing: 0.0625rem; /* 1px */
     transition: opacity 0.3s ease;
     font-weight: 400;
 }
@@ -60,10 +80,9 @@ nav {
     color: var(--color-03);
 }
 
-
 /* Scrollbar personnalisée */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 0.5rem; /* 8px */
 }
 
 ::-webkit-scrollbar-track {
@@ -78,30 +97,29 @@ nav {
     background: var(--color-03);
 }
 
-
-/* hero section */
+/* Hero section */
 .hero-section {
-    margin-top: 100px;
+    margin-top: 6.25rem; /* 100px */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 200px;
-    padding: 100px 20px;
+    gap: 12.5rem; /* 200px */
+    padding: 6.25rem 1.25rem; /* 100px 20px */
 }
 
 .h3 {
-    font-size: 24px;
-    margin-bottom: 30px;
-    margin-top: 30px;
+    font-size: 1.5rem; /* 24px */
+    margin-bottom: 1.875rem; /* 30px */
+    margin-top: 1.875rem; /* 30px */
 }
 
 .h1 {
-    font-size: 96px;
+    font-size: 6rem; /* 96px */
     font-weight: 700;
 }
 
 #lastName {
-    padding-left: 200px;
+    padding-left: 12.5rem; /* 200px */
 }
 
 #nickname {
@@ -112,22 +130,16 @@ nav {
     text-align: end;
 }
 
-
-
 .infoPhoto {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 18.75rem; /* 300px */
+    height: 18.75rem; /* 300px */
 }
 
 .photo-id {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
     background: var(--color-03);
-    position: relative;
-    width: 260px;
-    height: 260px;
+    width: 16.25rem; /* 260px */
+    height: 16.25rem; /* 260px */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -149,18 +161,16 @@ nav {
     from {
         transform: rotate(0deg);
     }
-
     to {
         transform: rotate(360deg);
     }
 }
-
 
 .skills-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 100px;
-    padding: 50px 20px;
+    gap: 6.25rem; /* 100px */
+    padding: 3.125rem 1.25rem; /* 50px 20px */
 }
