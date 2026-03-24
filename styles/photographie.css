@@ -1,13 +1,21 @@
-body, html {
+:root {
+    --bg-color: #cfcfcf;
+    --text-color: #2c2c2c;
+    --box-color: #3b3b3b;
+    /* Gris foncé pour les blocs */
+}
+
+body,
+html {
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    background-color: #1a1a1a;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    user-select: none; /* Empêche la sélection de texte gênante lors du clic */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    user-select: none;
 }
 
 #viewport {
@@ -19,69 +27,80 @@ body, html {
 
 #fresco {
     position: absolute;
-    width: 5000px; 
+    width: 5000px;
     height: 5000px;
     left: calc(50vw - 2500px);
     top: calc(50vh - 2500px);
-    
-    transform: scale(0.2); /* Départ encore plus dézoomé pour bien voir l'effet */
+    transform: scale(0.2);
     transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1);
     transform-origin: center center;
 }
 
+/* --- TEXTE CENTRAL --- */
 #intro-text {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 2500px;
+    left: 2500px;
     transform: translate(-50%, -50%);
-    text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 40px;
-    border-radius: 20px;
-    z-index: 100;
+    text-align: left;
+    z-index: 50;
 }
 
+#intro-text h1 {
+    font-size: 3.5rem;
+    margin: 5px 0 15px 0;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+#intro-text p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+#intro-text .small-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* --- STYLE DES ÎLOTS --- */
 .island {
     position: absolute;
-    width: 600px;
-    height: 600px;
 }
 
-.island-center-text {
+/* 1. Base commune pour TOUS les éléments (photos et blocs) */
+.fresco-item {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    background: #333;
-    padding: 20px;
-    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fresco-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 10;
 }
 
-/* Style commun des blocs */
-.photo {
-    position: absolute;
-    border: 6px solid white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
-    transition: transform 0.3s ease, z-index 0s;
+/* 2. Spécifique aux PHOTOS */
+.photo-box {
+    background-color: #e0e0e0;
+    /* Gris très clair en attendant que l'image charge */
+    background-size: cover;
+    background-position: center;
 }
 
-.photo:hover {
-    transform: scale(1.1) rotate(0deg) !important;
-    z-index: 20;
-    cursor: pointer;
+/* 3. Spécifique aux BLOCS GRIS */
+.grey-box {
+    background-color: var(--box-color);
+    color: white;
+    /* Couleur du texte si tu en ajoutes */
+    display: flex;
+    /* Permet de centrer le texte facilement */
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.85rem;
 }
-
-/* Tailles et couleurs des blocs remplaçant les photos */
-.block-1 { width: 200px; height: 150px; background-color: #ff6b6b; }
-.block-2 { width: 150px; height: 200px; background-color: #4ecdc4; }
-.block-3 { width: 180px; height: 180px; background-color: #ffe66d; }
-.block-4 { width: 220px; height: 140px; background-color: #1a535c; }
-
-/* Positionnement */
-.p1 { top: 10%; left: 10%; transform: rotate(-10deg); }
-.p2 { top: 15%; right: 5%; transform: rotate(12deg); }
-.p3 { bottom: 5%; left: 15%; transform: rotate(8deg); }
-.p4 { bottom: 15%; right: 10%; transform: rotate(-5deg); }
