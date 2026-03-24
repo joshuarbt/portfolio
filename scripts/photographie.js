@@ -1,25 +1,38 @@
 const fresco = document.getElementById('fresco');
 const viewport = document.getElementById('viewport');
+const loadingScreen = document.getElementById('loading-screen'); // On récupère l'écran de chargement
 
-let targetScale = 0.2;
+let targetScale = 0.2; 
 let targetLeft = 0;
 let targetTop = 0;
-let isZoomReady = false;
+let isZoomReady = false; 
 
 window.addEventListener('load', () => {
+    // 1. La page est chargée, on prépare les coordonnées de la fresque
     const style = window.getComputedStyle(fresco);
     targetLeft = parseFloat(style.left);
     targetTop = parseFloat(style.top);
 
-    setTimeout(() => {
-        targetScale = 2;
-        fresco.style.transform = `scale(${targetScale})`;
+    // 2. On fait disparaître l'écran de chargement en fondu
+    loadingScreen.style.opacity = '0';
 
+    // 3. On attend 500ms (le temps de la transition CSS du fondu)
+    setTimeout(() => {
+        // On enlève complètement l'écran de chargement pour qu'il ne bloque pas les clics
+        loadingScreen.style.display = 'none';
+
+        // 4. ET LÀ on lance la fameuse animation de zoom de ta fresque
         setTimeout(() => {
-            fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
-            isZoomReady = true;
-        }, 2500);
-    }, 100);
+            targetScale = 1;
+            fresco.style.transform = `scale(${targetScale})`; 
+            
+            setTimeout(() => {
+                fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+                isZoomReady = true; 
+            }, 2500);
+        }, 100); // Petit délai de sécurité avant de zoomer
+
+    }, 500); 
 });
 
 let isDragging = false;
