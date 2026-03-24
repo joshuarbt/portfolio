@@ -13,11 +13,13 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 25px 60px;
+    padding: 2rem 3.75rem; /* C'est ce padding qui va dicter l'épaisseur de ta barre */
+    /* SUPPRIME la ligne : height: 6.25rem; */
     background-color: var(--color-01);
     border-bottom: 2px solid var(--color-02);
     position: sticky;
-    height: 100px;
+    top: 0; /* Petit bonus : indispensable pour que le "sticky" fonctionne bien ! */
+    z-index: 1000; /* Assure que la nav reste au-dessus de tout le reste quand tu scrolles */
 }
 
 
@@ -28,13 +30,21 @@ nav {
 }
 
 .logo-wrapper {
-    width: 100px;
+    width: 6.25rem; 
+    position: relative; 
+    /* Tu peux enlever les display: flex ici, car l'enfant est absolu et n'en tient plus compte */
 }
 
 .logo-nav {
-    position: relative;
-    top: -50px;
-    height: 100px;
+    position: absolute;
+    height: 6.25rem;
+    
+    /* 1. LA MAGIE DU CENTRAGE HORIZONTAL */
+    left: 50%; /* Pousse le logo à la moitié du conteneur... */
+    transform: translateX(-50%); /* ... et le recule de la moitié de sa propre largeur pour le centrer pile poil ! */
+    
+    /* 2. L'AJUSTEMENT VERTICAL */
+    top: -4rem; /* Pour le descendre un peu. N'hésite pas à tester -1rem, -2rem ou -2.5rem pour trouver la hauteur parfaite. */
 }
 
 .nav-links a {

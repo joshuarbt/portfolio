@@ -138,3 +138,35 @@ html {
     text-align: center;
     font-size: 0.85rem;
 }
+
+/* --- LOGO RETOUR ACCUEIL --- */
+#back-home-logo {
+    position: fixed;
+    bottom: 30px; /* Espace par rapport au bas de l'écran */
+    left: 30px;   /* Espace par rapport à la gauche */
+    z-index: 1000; /* Par-dessus la fresque, mais sous le loading screen */
+    
+    /* Style et dimensions */
+    display: block;
+    width: 60px; /* Ajuste la taille de ton logo ici */
+    height: auto;
+    
+    /* Gestion de l'apparition et du survol */
+    opacity: 0; /* Caché au départ pour le loader */
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    pointer-events: none; /* Désactivé tant qu'il est invisible */
+}
+
+/* Effet au survol */
+#back-home-logo:hover {
+    transform: scale(1.1); /* Grandit légèrement */
+}
+
+#back-home-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Si ton SVG est noir et que tu veux qu'il s'adapte à ton fond gris foncé, 
+       tu peux le passer en blanc avec un filtre CSS : */
+    filter: invert(1); 
+}

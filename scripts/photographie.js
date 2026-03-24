@@ -2,10 +2,10 @@ const fresco = document.getElementById('fresco');
 const viewport = document.getElementById('viewport');
 const loadingScreen = document.getElementById('loading-screen'); // On récupère l'écran de chargement
 
-let targetScale = 0.2; 
+let targetScale = 0.2;
 let targetLeft = 0;
 let targetTop = 0;
-let isZoomReady = false; 
+let isZoomReady = false;
 
 window.addEventListener('load', () => {
     // 1. La page est chargée, on prépare les coordonnées de la fresque
@@ -16,23 +16,30 @@ window.addEventListener('load', () => {
     // 2. On fait disparaître l'écran de chargement en fondu
     loadingScreen.style.opacity = '0';
 
+    const backHomeLogo = document.getElementById('back-home-logo');
+
     // 3. On attend 500ms (le temps de la transition CSS du fondu)
     setTimeout(() => {
         // On enlève complètement l'écran de chargement pour qu'il ne bloque pas les clics
         loadingScreen.style.display = 'none';
 
+        if(backHomeLogo) {
+            backHomeLogo.style.opacity = '1';
+            backHomeLogo.style.pointerEvents = 'auto'; // On le rend cliquable
+        }
+
         // 4. ET LÀ on lance la fameuse animation de zoom de ta fresque
         setTimeout(() => {
             targetScale = 1;
-            fresco.style.transform = `scale(${targetScale})`; 
-            
+            fresco.style.transform = `scale(${targetScale})`;
+
             setTimeout(() => {
                 fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
-                isZoomReady = true; 
+                isZoomReady = true;
             }, 2500);
         }, 100); // Petit délai de sécurité avant de zoomer
 
-    }, 500); 
+    }, 500);
 });
 
 let isDragging = false;
