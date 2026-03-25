@@ -152,3 +152,37 @@ nav {
     gap: 6.25rem; /* 100px */
     padding: 3.125rem 1.25rem; /* 50px 20px */
 }
+
+/* --- LA FLEUR INTERACTIVE --- */
+#flower-container {
+    position: fixed; 
+    bottom: 30px;
+    right: 30px; 
+    width: 120px; /* Taille de ta fleur */
+    height: auto;
+    z-index: 1000;
+    /* Important pour que les yeux se positionnent par rapport à la fleur */
+    position: absolute; 
+}
+
+#flower-base {
+    width: 100%;
+    display: block;
+}
+
+/* L'image des yeux */
+#flower-eyes {
+    position: absolute;
+    width: 30px; /* Taille de ton bloc yeux (à ajuster) */
+    
+    /* Centre les yeux par défaut. 
+       Ajuste le 'top' pour qu'ils tombent pile au bon endroit sur le visage */
+    top: 30px; 
+    left: 50%;
+    
+    /* Le translate(-50%, -50%) permet de centrer parfaitement l'image par rapport à son point left/top */
+    transform: translate(-50%, -50%);
+    
+    /* Transition douce pour un effet organique (pas trop robotique) */
+    transition: transform 0.1s ease-out; 
+}
