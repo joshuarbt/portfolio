@@ -16,7 +16,7 @@ window.addEventListener('load', () => {
     // 2. On fait disparaître l'écran de chargement en fondu
     loadingScreen.style.opacity = '0';
 
-    const backHomeLogo = document.getElementById('back-home-logo');
+    const backHomeLogo = document.getElementById('back-home-flower');
 
     // 3. On attend 500ms (le temps de la transition CSS du fondu)
     setTimeout(() => {
@@ -101,3 +101,34 @@ viewport.addEventListener('wheel', (e) => {
     fresco.style.top = `${targetTop}px`;
     fresco.style.transform = `scale(${targetScale})`;
 }, { passive: false });
+
+// --- ANIMATION DES YEUX (Bouton Accueil) ---
+const flowerEyes = document.getElementById('flower-eyes');
+const flowerContainer = document.getElementById('flower-container');
+
+window.addEventListener('mousemove', (e) => {
+    // Si la fleur n'est pas sur la page (pour éviter les erreurs), on s'arrête
+    if (!flowerEyes || !flowerContainer) return; 
+
+    const rect = flowerContainer.getBoundingClientRect();
+    
+    // Calcul du centre de la fleur
+    const flowerCenterX = rect.left + rect.width / 2;
+    const flowerCenterY = rect.top + rect.height / 2;
+
+    // Calcul de la distance souris <-> fleur
+    const dx = e.clientX - flowerCenterX;
+    const dy = e.clientY - flowerCenterY;
+    const angle = Math.atan2(dy, dx);
+
+    // Distance max que les yeux peuvent parcourir. Ajuste ce chiffre !
+    const maxDistance = 20; 
+
+    // Calcul du mouvement visuel
+    const distance = Math.min(Math.hypot(dx, dy), maxDistance);
+    const moveX = distance * Math.cos(angle);
+    const moveY = distance * Math.sin(angle);
+
+    // Application aux yeux
+    flowerEyes.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+});

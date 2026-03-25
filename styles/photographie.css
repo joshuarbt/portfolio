@@ -139,34 +139,47 @@ html {
     font-size: 0.85rem;
 }
 
-/* --- LOGO RETOUR ACCUEIL --- */
-#back-home-logo {
+/* --- BOUTON FLEUR RETOUR ACCUEIL --- */
+#back-home-flower {
     position: fixed;
-    bottom: 30px; /* Espace par rapport au bas de l'écran */
-    left: 30px;   /* Espace par rapport à la gauche */
-    z-index: 1000; /* Par-dessus la fresque, mais sous le loading screen */
-    
-    /* Style et dimensions */
+    bottom: -40px; /* Distance du bas */
+    left: -40px;   /* Distance de la gauche */
+    z-index: 1000; /* Toujours au-dessus de la fresque */
     display: block;
-    width: 60px; /* Ajuste la taille de ton logo ici */
-    height: auto;
-    
-    /* Gestion de l'apparition et du survol */
-    opacity: 0; /* Caché au départ pour le loader */
-    transition: transform 0.3s ease, opacity 0.5s ease;
-    pointer-events: none; /* Désactivé tant qu'il est invisible */
+    width: 200px; /* Taille globale de la fleur (à ajuster) */
+    transition: transform 0.3s ease; /* Pour l'animation au survol */
 }
 
-/* Effet au survol */
-#back-home-logo:hover {
-    transform: scale(1.1); /* Grandit légèrement */
+/* Petit effet quand on passe la souris dessus */
+#back-home-flower:hover {
+    transform: scale(1.1); 
+    cursor: pointer;
 }
 
-#back-home-logo img {
+/* Le conteneur interne */
+#flower-container {
+    position: relative; /* Référence pour positionner les yeux */
     width: 100%;
     height: auto;
+}
+
+#flower-base {
+    width: 100%;
     display: block;
-    /* Si ton SVG est noir et que tu veux qu'il s'adapte à ton fond gris foncé, 
-       tu peux le passer en blanc avec un filtre CSS : */
-    filter: invert(1); 
+    rotate: -145deg; /* Inclinaison de la fleur */
+
+}
+
+/* L'image des yeux */
+#flower-eyes {
+    position: absolute;
+    width: 40px; /* Taille des yeux (à ajuster selon ton SVG) */
+    
+    /* Centre les yeux par défaut. Ajuste le 'top' pour qu'ils tombent pile au bon endroit */
+    top: 100px; 
+    left: 40%;
+    
+    transform: translate(-50%, -50%); /* Règle d'or pour centrer */
+    transition: transform 0.1s ease-out; /* Fluidité du mouvement */
+    pointer-events: none; /* IMPORTANT : Laisse passer le clic vers le lien <a> en dessous */
 }
