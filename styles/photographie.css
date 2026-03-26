@@ -1,9 +1,10 @@
 :root {
-    --bg-color: #cfcfcf;
-    --text-color: #2c2c2c;
-    --box-color: #3b3b3b;
+    --bg-color: #cccccc;
+    --text-color: #313131;
+    --box-color: #313131;
     /* Gris foncé pour les blocs */
 }
+
 
 body,
 html {
@@ -57,6 +58,7 @@ html {
     height: 100%;
     position: relative;
     cursor: grab;
+    touch-action: none; 
 }
 
 #fresco {
