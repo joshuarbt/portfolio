@@ -185,3 +185,32 @@ html {
     transition: transform 0.1s ease-out; /* Fluidité du mouvement */
     pointer-events: none; /* IMPORTANT : Laisse passer le clic vers le lien <a> en dessous */
 }
+
+@media screen and (max-width: 768px) {
+    
+    #back-home-flower {
+        /* On annule le positionnement en bas */
+        bottom: auto; 
+        
+        /* On le place en haut */
+        top: -30px; /* Petite marge par rapport au haut de l'écran */
+        left: -30px; /* Petite marge par rapport à la gauche */
+        
+        /* Optionnel : On réduit un peu sa taille sur mobile 
+           pour ne pas qu'il cache trop les photos */
+        width: 150px; 
+    }
+    #flower-base {
+    rotate: -45deg; /* Inclinaison de la fleur */
+
+}
+    /* Optionnel : On ajuste la taille des yeux en conséquence */
+    #flower-eyes {
+        width: 35px; /* Ajuste selon ton SVG pour que ça reste proportionné */
+        /* Il faudra peut-être ajuster le 'top' ici aussi 
+           si tu as changé la taille globale */
+        top: 54px;
+        left: 65px;
+
+    }
+}
