@@ -125,7 +125,7 @@ window.addEventListener('mousemove', (e) => {
     // Détermine la distance maximale en fonction de la largeur de l'écran
     // 768px est un seuil courant pour le mobile
     const mobileBreakpoint = 768; 
-    const maxDistance = window.innerWidth < mobileBreakpoint ? 10 : 20; // 10px sur mobile, 20px sur bureau
+    const maxDistance = window.innerWidth < mobileBreakpoint ? 7 : 20; // 10px sur mobile, 20px sur bureau
 
     // Calcul du mouvement visuel
     const distance = Math.min(Math.hypot(dx, dy), maxDistance);
