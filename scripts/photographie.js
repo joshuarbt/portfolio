@@ -183,7 +183,7 @@ viewport.addEventListener('touchmove', (e) => {
         );
 
         // Sensibilité du zoom tactile (à ajuster si ça va trop vite ou trop lentement)
-        const zoomSpeed = 0.005; 
+        const zoomSpeed = 0.002; 
         const distanceDiff = currentPinchDistance - initialPinchDistance;
         let previousScale = targetScale;
 

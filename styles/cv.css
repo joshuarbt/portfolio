@@ -1,0 +1,23 @@
+.hero-section {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+p {
+    text-align: justify;
+}
+
+.img-cv {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem; /* Espace au-dessus de l'image */
+    margin-bottom: 10rem; /* Espace en dessous de l'image */
+}
+
+.cv-image {
+    max-width: 50%;
+    height: auto;
+    border-radius: 8px; /* Optionnel : arrondir les coins de l'image */
+    box-shadow: 0px 0px 20px var(--color-03); /* Optionnel : ajouter une ombre pour un effet de profondeur */
+}
+

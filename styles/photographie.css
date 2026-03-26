@@ -5,6 +5,8 @@
     /* Gris foncé pour les blocs */
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+
 
 body,
 html {
@@ -15,7 +17,7 @@ html {
     overflow: hidden;
     background-color: var(--bg-color);
     color: var(--text-color);
-    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     user-select: none;
 }
 
