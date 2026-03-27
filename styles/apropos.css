@@ -2,13 +2,19 @@
     margin: 10em 20%;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
 }
 
 
 
 .minijojo-image {
     width: 300px;
+    height: auto;
+    border-radius: 5%;
+}
+
+.college-image{
+    width: 500px;
     height: auto;
     border-radius: 5%;
 }
