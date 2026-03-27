@@ -163,3 +163,43 @@ nav {
     gap: 6.25rem; /* 100px */
     padding: 3.125rem 1.25rem; /* 50px 20px */
 }
+
+/* --- BANDEAU ALTERNANCE DÉFILANT --- */
+.banner-container {
+    width: 100%;
+    background-color: var(--color-03); /* Fond foncé */
+    color: var(--color-02); /* Texte clair */
+    overflow: hidden; /* Cache le texte qui dépasse de l'écran */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    padding: 20px 0;
+    position: relative;
+    z-index: 100; /* S'assure qu'il passe au-dessus du reste */
+    /* border-bottom: 2px solid var(--box-color); Optionnel : une petite bordure */
+}
+
+.banner-text {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.25rem;
+    
+    /* C'est ici qu'on appelle l'animation */
+    /* 20s = la vitesse. Si c'est trop rapide, mets 30s. Si c'est trop lent, mets 10s. */
+    animation: scroll-banner 30s linear infinite;
+}
+
+/* Pause l'animation quand on passe la souris dessus (pratique pour lire !) */
+.banner-container:hover .banner-text {
+    animation-play-state: paused;
+}
+
+/* --- L'ANIMATION CSS --- */
+@keyframes scroll-banner {
+    0% {
+        transform: translateX(0); /* Point de départ */
+    }
+    100% {
+        transform: translateX(-50%); /* Se décale vers la gauche */
+    }
+}
