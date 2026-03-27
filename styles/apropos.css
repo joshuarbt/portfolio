@@ -1,0 +1,14 @@
+.propos-section {
+    margin: 10em 20%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.minijojo-image {
+    width: 300px;
+    height: auto;
+    border-radius: 5%;
+}

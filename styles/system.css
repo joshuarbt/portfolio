@@ -91,6 +91,11 @@ nav {
     margin-top: 1.875rem; /* 30px */
 }
 
+.h2 {
+    font-size: 4.5rem; /* 48px */
+    font-weight: 700;
+}
+
 .h1 {
     font-size: 6rem; /* 96px */
     font-weight: 700;
