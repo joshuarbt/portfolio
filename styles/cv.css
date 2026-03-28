@@ -1,6 +1,11 @@
-.hero-section {
-    margin: 0 20%;
+.cv-section {
+    margin: 10em 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20em;
 }
+
 
 p {
     text-align: justify;

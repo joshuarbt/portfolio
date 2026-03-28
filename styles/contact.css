@@ -1,0 +1,36 @@
+.end-propos {
+    text-align: center;
+    margin-top: 10em;
+    margin-bottom: 5em;
+}
+
+.contact-section {
+    text-align: start;
+    margin-top: 5em;
+    margin-bottom: 10em;
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.contact {
+    font-size: 3rem;
+}
+
+.logo-contact {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 15%;
+}
+
+.logo-contact a {
+    text-decoration: none;
+    color: var(--color-02);
+    font-size: 1rem; /* 16px */
+    letter-spacing: 0.0625rem; /* 1px */
+    transition: opacity 0.3s ease;
+    font-weight: 400;
+}
+
+.logo-contact a:hover {
+    color: var(--color-03);
+}

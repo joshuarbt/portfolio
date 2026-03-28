@@ -1,11 +1,17 @@
+.parcours-section {
+    margin: 10em 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20em;
+}
+
 .propos-section {
     margin: 10em 20%;
     display: flex;
     align-items: center;
     gap: 50px;
 }
-
-
 
 .minijojo-image {
     width: 300px;
@@ -14,7 +20,12 @@
 }
 
 .college-image{
-    width: 500px;
+    width: 300px;
     height: auto;
     border-radius: 5%;
 }
+
+.bloc-text {
+    text-align: justify;
+}
+
