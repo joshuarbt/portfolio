@@ -1,0 +1,26 @@
+/* --- EFFET BLOB ORGANIQUE SUR LE TEXTE --- */
+
+.halo-text {
+    /* On rend le texte invisible pour voir le fond à travers */
+    color: transparent; 
+    display: inline-block;
+    
+    /* On superpose deux fonds : 
+       1. Le blob de couleur vive (avec des bords nets)
+       2. Un fond gris uni pour le reste du texte */
+    background-image: 
+        radial-gradient(
+            circle 40px at var(--x, -100px) var(--y, -100px),
+            var(--color-03) 0%,     /* Ta couleur franche ! */
+            var(--color-03) 90%,    /* Reste uni jusqu'au bout */
+            transparent 95% /* Coupe nette (avec un tout petit peu d'anti-aliasing) */
+        ),
+        linear-gradient(var(--color-02), var(--color-02)); /* Le fond gris par défaut */
+        
+    /* On découpe ces fonds pour qu'ils prennent la forme des lettres */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* Curseur pointer optionnel si c'est cliquable */
+    cursor: pointer; 
+}

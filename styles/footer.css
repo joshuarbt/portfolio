@@ -1,0 +1,58 @@
+
+
+.footer-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12.5rem; /* 200px */
+    padding: 3rem 20%; /* 100px 20px */
+    background-color: var(--color-03);
+    color: var(--color-01);
+}
+
+.h3-footer {
+    font-size: 1rem; /* 24px */
+    margin-bottom: 1.875rem; /* 30px */
+    margin-top: 1.875rem; /* 30px */
+}
+
+.h1-footer {
+    font-size: 4rem; /* 96px */
+    font-weight: 700;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+#lastName {
+    padding-left: 12.5rem; /* 200px */
+}
+
+#nickname {
+    text-align: start;
+}
+
+#etude {
+    text-align: end;
+}
+
+.pages-footer, .contact-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.25rem; /* 20px */
+}
+
+.pages-footer a, .contact-footer a {
+    text-decoration: none;
+    color: var(--color-01);
+    font-size: 1rem; /* 16px */
+    letter-spacing: 0.0625rem; /* 1px */
+    transition: opacity 0.3s ease;
+    font-weight: 400;
+}
+
+.pages-footer a:hover, .contact-footer a:hover {
+    color: var(--color-02);
+}

@@ -52,6 +52,15 @@ body {
     font-weight: 700;
 }
 
+.h4 {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.p {
+    font-size: 1.5rem; /* 20px */
+}
+
 #lastName {
     padding-left: 12.5rem; /* 200px */
 }
@@ -111,13 +120,32 @@ body {
     }
 }
 
+
+/* jojo en quelques mots */
+.about-section {
+    margin: 3em 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 1.875rem; /* 30px */
+    padding: 1.25rem; /* 50px 20px */
+}
+
+#mini-a-propos {
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: end;
+}
+
+
+
 .skills-section {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 6.25rem; /* 100px */
-    padding: 3.125rem 1.25rem; /* 50px 20px */
+    padding: 1.25rem; /* 50px 20px */
 }
 
 /* --- BANDEAU ALTERNANCE DÉFILANT --- */

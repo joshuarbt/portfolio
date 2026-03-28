@@ -1,0 +1,20 @@
+/* --- SECTION COMPÉTENCES GSAP (Parallax Scrub) --- */
+
+#comp-titre {
+    margin-top: 2em;
+    margin-bottom: 0em;
+}
+
+.container-comp {
+    padding: 100px 20px; 
+    background-color: var(--bg-color); 
+    overflow: hidden; /* Important pour cacher les mots qui viennent d'en bas */
+    margin-bottom: 5em;
+}
+
+.skills-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 15px; 
+}
