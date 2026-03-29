@@ -75,3 +75,21 @@ body.is-dragging-fresco .custom-cursor {
 body.is-dragging-fresco .custom-cursor::after {
     opacity: 0 !important; /* Cache l'anneau si on clique sur une photo pour glisser */
 }
+
+/* ========================================================
+   --- DÉSACTIVATION DU CURSEUR CUSTOM SUR MOBILE --- 
+   ======================================================== */
+
+/* Media query qui cible les écrans tactiles ou les écrans de moins de 768px */
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    
+    /* 1. On annule notre règle qui cachait le curseur de base */
+    body, #viewport, .fresco-item, a {
+        cursor: auto !important; 
+    }
+    
+    /* 2. On s'assure que nos points personnalisés n'apparaissent jamais */
+    .custom-cursor, .cursor-trail {
+        display: none !important;
+    }
+}

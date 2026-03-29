@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // ========================================================
+    // --- DÉSACTIVATION SUR MOBILE --- 
+    // ========================================================
+    // Si l'appareil utilise un écran tactile (pointer: coarse) 
+    // ou si l'écran est petit (mobile/tablette)
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 768) {
+        return; // Stoppe le script immédiatement. Le curseur ne sera pas créé !
+    }
+
     const totalDots = 10;     
     const innerLength = 4;    
     const density = 0.4;      

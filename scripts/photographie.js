@@ -293,7 +293,7 @@ function focusOnPhoto(photo) {
     const unscaledOffsetY = (photoCenterY - originScreenY) / targetScale;
 
     // 5. Définir le niveau de zoom souhaité (2.5 = très zoomé. Tu peux ajuster ce chiffre !)
-    targetScale = 4;
+    targetScale = 2.5;
 
     // 6. Calculer les nouvelles coordonnées cibles pour centrer
     targetLeft = screenCenterX - 2500 - (unscaledOffsetX * targetScale);
