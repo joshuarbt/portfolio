@@ -275,31 +275,46 @@ viewport.addEventListener('touchend', (e) => {
 // ========================================================
 
 function focusOnPhoto(photo) {
-    // 1. Récupérer la position actuelle de la photo à l'écran
+    // 1. Récupérer la position actuelle et la taille de la photo à l'écran
     const rect = photo.getBoundingClientRect();
     const photoCenterX = rect.left + rect.width / 2;
     const photoCenterY = rect.top + rect.height / 2;
 
     // 2. Calculer le centre de ton écran
-    const screenCenterX = window.innerWidth / 2;
-    const screenCenterY = window.innerHeight / 2;
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const screenCenterX = screenWidth / 2;
+    const screenCenterY = screenHeight / 2;
 
-    // 3. Trouver où se trouve le centre d'origine de la fresque (2500, 2500) actuellement
+    // 3. Trouver où se trouve le centre d'origine de la fresque (2500, 2500)
     const originScreenX = targetLeft + 2500;
     const originScreenY = targetTop + 2500;
 
-    // 4. Calculer la distance (offset) entre la photo et l'origine, sans tenir compte du zoom
+    // 4. Calculer la distance (offset) et la taille réelle de la photo (sans le zoom actuel)
     const unscaledOffsetX = (photoCenterX - originScreenX) / targetScale;
     const unscaledOffsetY = (photoCenterY - originScreenY) / targetScale;
+    
+    const unscaledPhotoWidth = rect.width / targetScale;
+    const unscaledPhotoHeight = rect.height / targetScale;
 
-    // 5. Définir le niveau de zoom souhaité (2.5 = très zoomé. Tu peux ajuster ce chiffre !)
-    targetScale = 2.5;
+    // ========================================================
+    // 5. LA MAGIE : CALCUL DU ZOOM PARFAIT
+    // On calcule le zoom nécessaire pour que la photo prenne 80% de la largeur OU 75% de la hauteur
+    const scaleForWidth = (screenWidth * 0.8) / unscaledPhotoWidth;
+    const scaleForHeight = (screenHeight * 0.75) / unscaledPhotoHeight;
+
+    // On prend le plus petit des deux pour être sûr que la photo ne déborde jamais de l'écran
+    targetScale = Math.min(scaleForWidth, scaleForHeight);
+
+    // On met quand même une limite (entre x1 et x4) pour éviter des zooms extrêmes
+    targetScale = Math.min(Math.max(1, targetScale), 4);
+    // ========================================================
 
     // 6. Calculer les nouvelles coordonnées cibles pour centrer
     targetLeft = screenCenterX - 2500 - (unscaledOffsetX * targetScale);
     targetTop = screenCenterY - 2500 - (unscaledOffsetY * targetScale);
 
-    // 7. Appliquer avec une belle transition très douce (0.8 seconde)
+    // 7. Appliquer avec une belle transition très douce
     fresco.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), left 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
     
     fresco.style.transform = `scale(${targetScale})`;
