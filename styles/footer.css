@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12.5rem; /* 200px */
     padding: 3rem 20%; /* 100px 20px */
     background-color: var(--color-03);
     color: var(--color-01);

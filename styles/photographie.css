@@ -58,8 +58,7 @@ html {
 #viewport {
     width: 100%;
     height: 100%;
-    position: relative;
-    cursor: grab;
+    position: relative;;
     touch-action: none; 
 }
 
@@ -157,7 +156,6 @@ html {
 /* Petit effet quand on passe la souris dessus */
 #back-home-flower:hover {
     transform: scale(1.1); 
-    cursor: pointer;
 }
 
 /* Le conteneur interne */

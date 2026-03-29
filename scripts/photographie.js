@@ -53,7 +53,7 @@ viewport.addEventListener('mousedown', (e) => {
     initialLeft = targetLeft;
     initialTop = targetTop;
     fresco.style.transition = 'none';
-    viewport.style.cursor = 'grabbing';
+    document.body.classList.add('is-dragging-fresco');
 });
 
 window.addEventListener('mousemove', (e) => {
@@ -68,13 +68,14 @@ window.addEventListener('mousemove', (e) => {
 
 window.addEventListener('mouseup', () => {
     isDragging = false;
-    viewport.style.cursor = 'grab';
+    document.body.classList.remove('is-dragging-fresco');
+    
     if (isZoomReady) fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
 });
 
 window.addEventListener('mouseleave', () => {
     isDragging = false;
-    viewport.style.cursor = 'grab';
+    document.body.classList.remove('is-dragging-fresco');
 });
 
 viewport.addEventListener('wheel', (e) => {

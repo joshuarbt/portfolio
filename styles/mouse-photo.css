@@ -1,0 +1,77 @@
+:root {
+    --cursor-main: #437B75; 
+    --cursor-trail: #7CBFB8; 
+    --cursor-hover: #313131; 
+}
+/* ========================================================
+   --- CURSEUR SOLIDE 2 COULEURS --- 
+   ======================================================== */
+
+/* Cache le curseur par défaut PARTOUT (même sur la fresque) */
+body, #viewport, .fresco-item, a {
+    cursor: none !important; 
+}
+
+.custom-cursor, .cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none; 
+    transform: translate(-50%, -50%); 
+}
+
+.custom-cursor {
+    background-color: var(--cursor-main);
+    z-index: 10000; 
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.trail-inner {
+    background-color: var(--cursor-main);
+    z-index: 9999; 
+}
+
+.trail-outer {
+    background-color: var(--cursor-trail);
+    z-index: 9998; 
+}
+
+/* L'ANNEAU EXTÉRIEUR (HOVER) */
+.custom-cursor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 45px; 
+    height: 45px;
+    border: 4px solid var(--cursor-main); 
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0.5); 
+    opacity: 0; 
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* --- COMPORTEMENT SURVOL DES LIENS & PHOTOS --- */
+body.is-hovering-link .trail-inner,
+body.is-hovering-link .trail-outer {
+    display: none; /* Cache la traînée */
+}
+
+body.is-hovering-link .custom-cursor::after {
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1); 
+}
+
+/* --- COMPORTEMENT QUAND ON ATTRAPE LA FRESQUE --- */
+/* Au lieu de la main "grabbing", ton point rétrécit et change de couleur ! */
+body.is-dragging-fresco .custom-cursor {
+    transform: translate(-50%, -50%) scale(0.6);
+    background-color: var(--cursor-hover);
+}
+body.is-dragging-fresco .custom-cursor::after {
+    opacity: 0 !important; /* Cache l'anneau si on clique sur une photo pour glisser */
+}

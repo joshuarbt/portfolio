@@ -52,6 +52,11 @@ body {
     font-weight: 700;
 }
 
+.h1-5 {
+    font-size: 8rem; /* 80px */
+    font-weight: 700;
+}
+
 .h4 {
     font-size: 3rem;
     font-weight: 700;
@@ -186,4 +191,63 @@ body {
     100% {
         transform: translateX(-50%); /* Se décale vers la gauche */
     }
+}
+
+
+/* --- SECTION PROJETS --- */
+
+.projects-section {
+    /* Donne de l'espace autour de la section */
+    padding: 1rem 1.25rem;
+    margin: 0 10%;
+    margin-bottom: 10rem;
+    display: flex;
+    justify-content: center; /* Centre le bloc sur la page */
+}
+
+.projects-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.projects-content .h3 {
+    margin-bottom: 0; /* Enlève la marge du bas pour coller au gros titre */
+    font-weight: 700;
+}
+
+.projects-content .h1-5 {
+    margin-bottom: 0; /* Enlève la marge du bas pour coller au gros titre */
+    font-weight: 700;
+    text-align: justify;
+}
+
+/* On s'assure que le lien n'a pas de style par défaut (pas souligné) */
+.projects-content a {
+    text-decoration: none;
+    color: var(--color-02);
+    transition: color 0.3s ease; /* Transition douce pour le hover */
+}
+.projects-content a:hover {
+    color: var(--color-03); /* Change la couleur au survol */
+}
+
+/* L'image qui remplace le 'O' */
+.letter-image {
+    display: inline-block;
+    margin: 0 0.1em; /* Un petit espace de chaque côté pour éviter que ça colle trop aux lettres */
+    width: 0.70em;  /* Largeur relative à la taille du texte */
+    height: 0.70em; /* Hauteur relative (pour faire un carré parfait) */
+    
+    /* Mets ici le chemin vers l'image que tu veux afficher ! */
+    background-image: url('../assets/projets/3d-voiture.webp'); 
+    background-size: cover;
+    background-position: center;
+    
+    /* Alignement magique pour que l'image repose sur la même ligne que les lettres */
+    vertical-align: baseline;
+    
+    /* Petite astuce : on la descend d'un tout petit chouïa si la police a un léger décalage */
+    /* transform: translateY(5%); Décommente et ajuste si l'image te parait trop haute */
 }

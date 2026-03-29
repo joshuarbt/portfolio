@@ -3,10 +3,10 @@
 .halo-text {
     /* On rend le texte invisible pour voir le fond à travers */
     color: transparent; 
-    display: inline-block;
+    display: block;
     
     /* On superpose deux fonds : 
-       1. Le blob de couleur vive (avec des bords nets)
+        1. Le blob de couleur vive (avec des bords nets)
        2. Un fond gris uni pour le reste du texte */
     background-image: 
         radial-gradient(
@@ -20,7 +20,4 @@
     /* On découpe ces fonds pour qu'ils prennent la forme des lettres */
     -webkit-background-clip: text;
     background-clip: text;
-    
-    /* Curseur pointer optionnel si c'est cliquable */
-    cursor: pointer; 
 }

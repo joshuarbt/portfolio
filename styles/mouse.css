@@ -1,0 +1,118 @@
+/* ========================================================
+   --- CURSEUR SOLIDE 2 COULEURS AVEC HOVER DES LIENS --- 
+   ======================================================== */
+
+body {
+    cursor: none; /* Cache le curseur par défaut partout */
+}
+
+/* Style commun à tous les points */
+.custom-cursor, .cursor-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px; 
+    height: 20px;
+    border-radius: 50%;
+    pointer-events: none; /* TRÈS IMPORTANT : Laisse passer les clics au travers */
+    transform: translate(-50%, -50%); /* Centre parfaitement sur la souris */
+}
+
+/* 1. Le curseur principal (Vert uni --color-03) */
+.custom-cursor {
+    background-color: var(--color-03); /* Couleur principale du cercle */
+    z-index: 10000; /* Toujours au-dessus de tout */
+}
+
+/* 2. La traînée intérieure (Même couleur Vert uni --color-03) */
+.trail-inner {
+    background-color: var(--color-03);
+    z-index: 9999; 
+}
+
+/* 3. La fin de la traînée (Deuxième couleur douce --color-04) */
+.trail-outer {
+    background-color: var(--color-04); /* Couleur douce pour la traînée */
+    z-index: 9998; 
+}
+
+/* ========================================================
+   --- COMPORTEMENT AU SURVOL D'UN LIEN (Désactive la traînée) --- 
+   ======================================================== */
+
+/* Quand la souris survole un lien (détecté par le JS) */
+body.is-hovering-link .trail-inner,
+body.is-hovering-link .trail-outer {
+    display: none; /* Supprime instantanément la traînée */
+}
+
+/* Le curseur principal reste visible, solide et net, comme sur ta PJ. */
+body.is-hovering-link .custom-cursor {
+    /* Tu peux modifier sa taille si tu veux, ex: width: 30px; */
+    opacity: 1; /* S'assure qu'il est bien visible */
+}
+
+/* --- LE CHANGEMENT DE COULEUR DU LIEN AU SURVOL --- */
+/* Pour tous les liens et boutons cliquables */
+a:hover, button:hover {
+    color: var(--color-02) !important;
+    cursor: none; /* Garde le curseur système caché */
+}
+
+/* ========================================================
+   --- L'ANNEAU EXTÉRIEUR DU CURSEUR (HOVER) --- 
+   ======================================================== */
+
+/* On crée l'anneau, attaché au curseur principal */
+.custom-cursor::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    
+    /* Taille de l'anneau extérieur (à ajuster selon tes goûts) */
+    width: 45px; 
+    height: 45px;
+    
+    /* Épaisseur et couleur du trait */
+    border: 6px solid var(--color-04); 
+    border-radius: 50%;
+    
+    /* Par défaut : il est centré, réduit et invisible */
+    transform: translate(-50%, -50%) scale(0.5); 
+    opacity: 0; 
+    
+    /* Petite animation fluide quand il apparaît */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Quand la souris survole un lien (la classe ajoutée par le JS) */
+body.is-hovering-link .custom-cursor::after {
+    opacity: 1; /* Il devient visible */
+    transform: translate(-50%, -50%) scale(1); /* Il prend sa taille normale */
+}
+
+/* ========================================================
+   --- COMPORTEMENT SPÉCIFIQUE AU FOOTER --- 
+   ======================================================== */
+
+/* Le point central passe en couleur 02 */
+body.is-hovering-footer .custom-cursor {
+    background-color: var(--color-02);
+    /* Optionnel : une petite transition douce pour le changement de couleur */
+    transition: background-color 0.3s ease, opacity 0.3s ease; 
+}
+
+/* Bonus : Si tu survoles un LIEN qui se trouve DANS ton footer, 
+   on passe aussi l'anneau extérieur en couleur 02 pour que tout soit raccord ! */
+body.is-hovering-footer.is-hovering-link .custom-cursor::after {
+    border-color: var(--color-02);
+}
+
+/* Optionnel : si tu veux que la première partie de la traînée change AUSSI de couleur
+   quand tu es sur le footer, décommente les lignes ci-dessous : */
+
+body.is-hovering-footer .trail-inner {
+    background-color: var(--color-02);
+}
