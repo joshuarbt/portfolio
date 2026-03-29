@@ -66,11 +66,21 @@ window.addEventListener('mousemove', (e) => {
     fresco.style.top = `${targetTop}px`;
 });
 
-window.addEventListener('mouseup', () => {
+window.addEventListener('mouseup', (e) => {
     isDragging = false;
-    document.body.classList.remove('is-dragging-fresco');
+    document.body.classList.remove('is-dragging-fresco'); // Remet le curseur normal
     
-    if (isZoomReady) fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+    // On calcule la distance parcourue entre le clic et le relâchement
+    const dx = Math.abs(e.clientX - startX);
+    const dy = Math.abs(e.clientY - startY);
+
+    // Si on a bougé de moins de 5 pixels ET qu'on a cliqué sur une photo
+    if (dx < 5 && dy < 5 && e.target.classList.contains('photo-box')) {
+        focusOnPhoto(e.target); // On zoome dessus !
+    } else {
+        // Sinon, c'était juste un glissement de la fresque, on remet la transition normale
+        if (isZoomReady) fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+    }
 });
 
 window.addEventListener('mouseleave', () => {
@@ -239,4 +249,60 @@ viewport.addEventListener('touchend', (e) => {
         isDragging = false;
         if(isZoomReady) fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
     }
+
+    else if (e.touches.length === 0) {
+        isDragging = false;
+        document.body.classList.remove('is-dragging-fresco');
+        
+        // On récupère les coordonnées du doigt qui vient de se lever
+        const touch = e.changedTouches[0];
+        const dx = Math.abs(touch.clientX - startX);
+        const dy = Math.abs(touch.clientY - startY);
+
+        // Si c'est un tap (moins de 5px de glissement) sur une photo
+        if (dx < 5 && dy < 5 && e.target.classList.contains('photo-box')) {
+            focusOnPhoto(e.target); // On zoome dessus !
+        } else {
+            // Sinon (fin de glissement)
+            if(isZoomReady) fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+        }
+    }
 });
+
+
+// ========================================================
+// --- FONCTION : CENTRER ET ZOOMER SUR UNE PHOTO --- 
+// ========================================================
+
+function focusOnPhoto(photo) {
+    // 1. Récupérer la position actuelle de la photo à l'écran
+    const rect = photo.getBoundingClientRect();
+    const photoCenterX = rect.left + rect.width / 2;
+    const photoCenterY = rect.top + rect.height / 2;
+
+    // 2. Calculer le centre de ton écran
+    const screenCenterX = window.innerWidth / 2;
+    const screenCenterY = window.innerHeight / 2;
+
+    // 3. Trouver où se trouve le centre d'origine de la fresque (2500, 2500) actuellement
+    const originScreenX = targetLeft + 2500;
+    const originScreenY = targetTop + 2500;
+
+    // 4. Calculer la distance (offset) entre la photo et l'origine, sans tenir compte du zoom
+    const unscaledOffsetX = (photoCenterX - originScreenX) / targetScale;
+    const unscaledOffsetY = (photoCenterY - originScreenY) / targetScale;
+
+    // 5. Définir le niveau de zoom souhaité (2.5 = très zoomé. Tu peux ajuster ce chiffre !)
+    targetScale = 4;
+
+    // 6. Calculer les nouvelles coordonnées cibles pour centrer
+    targetLeft = screenCenterX - 2500 - (unscaledOffsetX * targetScale);
+    targetTop = screenCenterY - 2500 - (unscaledOffsetY * targetScale);
+
+    // 7. Appliquer avec une belle transition très douce (0.8 seconde)
+    fresco.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), left 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+    
+    fresco.style.transform = `scale(${targetScale})`;
+    fresco.style.left = `${targetLeft}px`;
+    fresco.style.top = `${targetTop}px`;
+}
