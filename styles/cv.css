@@ -30,7 +30,7 @@ p {
 /* --- RESPONSIVE TABLETTE --- */
 @media (max-width: 1024px) {
     .cv-section {
-        margin: 6em 10%;
+        margin: 8em 10%;
     }
 
     .cv-image {
@@ -43,7 +43,7 @@ p {
 @media (max-width: 768px) {
     .cv-section {
         flex-direction: column; /* On empile le titre et le sous-titre */
-        margin: 4em 5%;
+        margin: 7em 5%;
         gap: 2rem;
         text-align: center; /* On centre le texte */
     }
