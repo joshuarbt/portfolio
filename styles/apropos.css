@@ -1,31 +1,59 @@
+/* --- BASE (Ordinateur) --- */
+
 .parcours-section {
-    margin: 10em 15%;
+    margin: 8em 15%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20em;
+    gap: 5em; /* 20em était beaucoup trop grand et cassait la mise en page */
 }
 
 .propos-section {
-    margin: 10em 20%;
+    margin: 8em 15%;
     display: flex;
     align-items: center;
     gap: 50px;
 }
 
-.minijojo-image {
-    width: 300px;
+/* On regroupe le style des images pour éviter de se répéter */
+.minijojo-image, .college-image {
+    width: 100%;
+    max-width: 300px; /* Bloque la taille à 300px max sur PC */
     height: auto;
     border-radius: 5%;
-}
-
-.college-image{
-    width: 300px;
-    height: auto;
-    border-radius: 5%;
+    object-fit: cover;
 }
 
 .bloc-text {
     text-align: justify;
 }
 
+
+/* --- RESPONSIVE TABLETTE --- */
+@media (max-width: 1024px) {
+    .parcours-section, .propos-section {
+        margin: 6em 10%; /* On réduit les marges latérales */
+    }
+}
+
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .parcours-section {
+        flex-direction: column; /* On empile les titres */
+        margin: 4em 5%;
+        gap: 2em;
+        text-align: center;
+    }
+
+    .propos-section {
+        flex-direction: column; /* Le texte et l'image passent l'un sous l'autre */
+        margin: 4em 5%;
+        gap: 2rem;
+        text-align: center; /* Centre le titre */
+    }
+
+    .bloc-text {
+        text-align: left; /* Le justifié sur mobile est à éviter (crée des espaces vides) */
+    }
+}

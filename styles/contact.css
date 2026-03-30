@@ -1,3 +1,5 @@
+/* --- BASE (Ordinateur) --- */
+
 .end-propos {
     text-align: center;
     margin-top: 10em;
@@ -19,7 +21,9 @@
 .logo-contact {
     display: flex;
     justify-content: space-between;
-    padding: 2rem 15%;
+    padding: 2rem 0;
+    flex-wrap: wrap; /* Sécurité si l'écran rétrécit */
+    gap: 1.5rem;
 }
 
 .logo-contact a {
@@ -33,4 +37,39 @@
 
 .logo-contact a:hover {
     color: var(--color-03);
+}
+
+
+/* --- RESPONSIVE TABLETTE --- */
+@media (max-width: 1024px) {
+    .contact-section {
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+}
+
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .end-propos {
+        margin-top: 5em;
+        margin-bottom: 3em;
+    }
+    
+    .contact-section {
+        margin-right: 5%;
+        margin-left: 5%;
+        margin-bottom: 5em;
+        text-align: center; /* On centre le tout sur mobile */
+    }
+
+    .contact {
+        font-size: clamp(2rem, 8vw, 3rem); /* Rend le texte "Contactez-moi" adaptatif */
+    }
+
+    .logo-contact {
+        flex-direction: column; /* On empile les liens (Instagram, Behance...) l'un sous l'autre */
+        align-items: center;    /* On les centre */
+        gap: 2rem;
+    }
 }
