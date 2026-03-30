@@ -170,6 +170,7 @@ body {
     padding: 20px 0;
     position: relative;
     z-index: 100; /* S'assure qu'il passe au-dessus du reste */
+    margin-top: 7rem; /* Pousse le bandeau sous la barre de navigation sur PC */
     /* border-bottom: 2px solid var(--box-color); Optionnel : une petite bordure */
 }
 
