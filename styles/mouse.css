@@ -116,3 +116,24 @@ body.is-hovering-footer.is-hovering-link .custom-cursor::after {
 body.is-hovering-footer .trail-inner {
     background-color: var(--color-02);
 }
+
+/* ========================================================
+   --- SÉCURITÉ MOBILE : RETOUR AU COMPORTEMENT NATIF --- 
+   ======================================================== */
+
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    
+    /* 1. On force le retour de la souris classique du système */
+    body, a, button, #viewport, .fresco-item, * {
+        cursor: auto !important; 
+    }
+    
+    /* 2. Au cas où, on s'assure de cacher totalement nos points verts */
+    .custom-cursor, 
+    .cursor-trail, 
+    .trail-inner, 
+    .trail-outer, 
+    .cursor-container {
+        display: none !important;
+    }
+}

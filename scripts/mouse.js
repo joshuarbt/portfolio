@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches || window.innerWidth <= 768) {
+        return; // Le mot magique 'return' arrête la lecture du script ici !
+    }
+
     // --- RÉGLAGES DE LA TRAÎNÉE ---
     const totalDots = 10;     // Nombre TOTAL de points dans la traînée
     const innerLength = 4;    // Nombre de points pour la 1ère couleur (--color-03)
