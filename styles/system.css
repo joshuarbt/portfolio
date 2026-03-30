@@ -66,6 +66,8 @@ body {
     font-size: 1.5rem; /* 20px */
 }
 
+
+
 #lastName {
     padding-left: 12.5rem; /* 200px */
 }
@@ -78,53 +80,58 @@ body {
     text-align: end;
 }
 
+/* Conteneur principal de la photo */
 .infoPhoto {
     position: relative;
-    width: 18.75rem; /* 300px */
-    height: 18.75rem; /* 300px */
-}
-
-.photo-id {
-    background: var(--color-03);
-    width: 16.25rem; /* 260px */
-    height: 16.25rem; /* 260px */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
+    /* On utilise une taille fluide basée sur la largeur de l'écran */
+    width: clamp(250px, 30vw, 350px); 
+    /* Aspect-ratio assure que le conteneur reste un carré parfait */
+    aspect-ratio: 1 / 1; 
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.pp-link {
-    width: 92%;
-    height: 92%;
+
+/* Le cercle de couleur en fond */
+.photo-id {
+    background: var(--color-03);
+    width: 80%; /* Ajuste ce % pour laisser plus ou moins de place au texte autour */
+    height: 80%;
     border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* L'image de profil à l'intérieur */
+.pp-link {
+    width: 100%;
+    height: 100%;
     background-image: url('../assets/pp-linkedin.webp');
     background-size: cover;
     background-position: center;
 }
 
+/* Le texte qui tourne (SVG) */
 .circle-text-svg {
-    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Il prend toute la place du parent .infoPhoto */
     height: 100%;
+    z-index: 2;
+    pointer-events: none; /* Permet de cliquer à travers le texte si besoin */
 }
 
 .rotating-text {
     animation: rotateText 30s linear infinite;
-    transform-origin: 50% 50%;
+    transform-origin: center;
 }
 
 @keyframes rotateText {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
-
 
 /* jojo en quelques mots */
 .about-section {
@@ -250,4 +257,63 @@ body {
     
     /* Petite astuce : on la descend d'un tout petit chouïa si la police a un léger décalage */
     /* transform: translateY(5%); Décommente et ajuste si l'image te parait trop haute */
+}
+
+#projet-lien {
+    text-decoration: underline;
+    text-decoration-color: var(--color-03);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 4px;
+}
+
+
+
+/* --- RESPONSIVE TABLETTE & MOBILE --- */
+
+@media (max-width: 1024px) {
+    /* On réduit la taille globale des titres */
+    .h1 { font-size: 4rem; }
+    .h1-5 { font-size: 4.5rem; }
+    .h4 { font-size: 2.2rem; }
+    
+    .hero-section {
+        flex-direction: column-reverse; /* Photo au-dessus du nom sur tablette */
+        gap: 3rem;
+        padding: 3rem 1.25rem;
+    }
+
+    #lastName {
+        padding-left: 0; /* On annule le décalage à droite */
+        text-align: center;
+    }
+    
+    .about-section {
+        margin: 3rem 5%; /* On donne plus de place au texte */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Mobile */
+    .h1 { font-size: 3rem; }
+    .h1-5 { font-size: 3.2rem; }
+    .h4 { font-size: 1.8rem; }
+    .p { font-size: 1.1rem; }
+
+    .hero-section {
+        margin-top: 2rem;
+    }
+
+    /* On centre les textes pour le mobile */
+    .infoName {
+        text-align: center;
+    }
+
+    #nickname, #age {
+        text-align: center;
+    }
+
+    .projects-section {
+        margin: 0 5%;
+        margin-bottom: 5rem;
+    }
 }

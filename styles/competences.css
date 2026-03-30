@@ -18,3 +18,18 @@
     align-items: center; 
     gap: 15px; 
 }
+
+
+
+
+
+@media (max-width: 768px) {
+    .container-comp {
+        padding: 50px 10px;
+    }
+    
+    .skills-section .h1 {
+        font-size: 2.5rem; /* Taille plus sage pour les petits écrans */
+        text-align: center;
+    }
+}

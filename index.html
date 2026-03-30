@@ -23,6 +23,7 @@
     <!-- fichier scripts -->
     <script src="scripts/script.js" defer></script>
     <script src="scripts/nav.js" defer></script>
+    <script src="scripts/nav-mobile.js" defer></script>
     <script src="scripts/competences.js" defer></script>
     <script src="scripts/effect.js" defer></script>
     <script src="scripts/mouse.js" defer></script>
@@ -31,32 +32,43 @@
 
 <body>
     <nav>
+        <div class="logo-wrapper">
+            <a href="../index.html">
+                <div class="logo-nav" id="flower-container">
+                    <img src="../assets/logo-base.svg" id="flower-base" alt="Fleur">
+                    <img src="../assets/logo-yeux.svg" id="flower-eyes" alt="Yeux de la fleur">
+                </div>
+            </a>
+        </div>
 
         <ul class="nav-links">
             <li><a href="../pages/projets.html">[ PROJETS ]</a></li>
             <li><a href="../pages/photographie.html">[ PHOTOS ]</a></li>
-            <div class="logo-wrapper">
-                <a href="../index.html">
-                    <div class="logo-nav" id="flower-container">
-                        <img src="../assets/logo-base.svg" id="flower-base" alt="Fleur">
 
-                        <img src="../assets/logo-yeux.svg" id="flower-eyes" alt="Yeux de la fleur">
-                    </div>
-                </a>
-            </div>
+            <li class="spacer"></li>
             <li><a href="../pages/apropos.html">[ À PROPOS ]</a></li>
             <li><a href="../pages/cv-page.html">[ MON CV ]</a></li>
         </ul>
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
     </nav>
     <div class="banner-container">
         <div class="banner-text">
-            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans ! &nbsp;&nbsp;&nbsp; •
+            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans !
+                &nbsp;&nbsp;&nbsp; •
                 &nbsp;&nbsp;&nbsp;</span>
-            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans ! &nbsp;&nbsp;&nbsp; •
+            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans !
+                &nbsp;&nbsp;&nbsp; •
                 &nbsp;&nbsp;&nbsp;</span>
-            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans ! &nbsp;&nbsp;&nbsp; •
+            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans !
+                &nbsp;&nbsp;&nbsp; •
                 &nbsp;&nbsp;&nbsp;</span>
-            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans ! &nbsp;&nbsp;&nbsp; •
+            <span>À la recherche d'une alternance en Design graphique / Photographie / Audiovisuel pour 2 ans !
+                &nbsp;&nbsp;&nbsp; •
                 &nbsp;&nbsp;&nbsp;</span>
         </div>
     </div>
@@ -84,7 +96,9 @@
         <div class="container">
             <section class="about-section">
                 <div class="h4 halo-text" id="mini-a-propos">Jojo en quelques mots :</div>
-                <p class="p" id="mini-a-propos-text">Je suis un étudiant en métier du multimédia et de l'internet. passionné par le design graphique, la photographie, l'audiovisuel et la mode. Je cherche à créer des expériences visuelles captivantes à travers les images.</p>
+                <p class="p" id="mini-a-propos-text">Je suis un étudiant en métier du multimédia et de l'internet.
+                    passionné par le design graphique, la photographie, l'audiovisuel et la mode. Je cherche à créer des
+                    expériences visuelles captivantes à travers les images.</p>
                 <div class="h4 halo-text" id="comp-titre">Mes domaines de compétences :</div>
             </section>
         </div>
@@ -106,7 +120,7 @@
                     <div class="h1-5 halo-text" id="projets">
                         Laissez mon [TR<span class="letter-image"></span>VAIL ] parler pour moi !
                     </div>
-                    <a href="../pages/projets.html" class="h3">EXPLORER [ PROJETS ]</a>
+                    <a href="../pages/projets.html" class="h3" id="projet-lien">EXPLORER [ PROJETS ]</a>
                 </div>
             </section>
         </div>
@@ -119,7 +133,7 @@
                 <div class="infoName-footer">
                     <div class="h3-footer" id="nickname">Nickname : DCd0ck</div>
                     <span class="h1-footer" id="firstName">JOSHUA</span> <br>
-                    <span class="h1-footer" id="lastName">RABOTEAU</span>
+                    <span class="h1-footer" id="lastName-footer">RABOTEAU</span>
                     <div class="h3-footer" id="etude">Etudes : BUT MMI</div>
                 </div>
                 <div class="pages-footer">
@@ -131,10 +145,12 @@
                 </div>
                 <div class="contact-footer">
                     <div class="h3-footer bold">CONTACT</div>
-                    <a href="mailto:joshua@raboteau.fr" class="contact-link" target="_blank">[ MAIL : joshua@raboteau.fr ]</a>
+                    <a href="mailto:joshua@raboteau.fr" class="contact-link" target="_blank">[ MAIL : joshua@raboteau.fr
+                        ]</a>
                     <a href="https://www.instagram.com/dcd0ck/" class="contact-link" target="_blank">[ INSTAGRAM ]</a>
                     <a href="https://www.behance.net/dcdock" class="contact-link" target="_blank">[ BEHANCE ]</a>
-                    <a href="https://www.linkedin.com/in/jraboteau/" class="contact-link" target="_blank">[ LINKEDIN ]</a>
+                    <a href="https://www.linkedin.com/in/jraboteau/" class="contact-link" target="_blank">[ LINKEDIN
+                        ]</a>
                 </div>
             </div>
         </div>

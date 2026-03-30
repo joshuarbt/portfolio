@@ -1,46 +1,33 @@
-/* Navigation */
+/* --- BARRE DE NAVIGATION (Globale) --- */
 nav {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centre le menu sur PC */
     align-items: center;
-    padding: 2rem 3.75rem; /* C'est ce padding qui va dicter l'épaisseur de ta barre */
-    /* SUPPRIME la ligne : height: 6.25rem; */
+    padding: 2rem 3.75rem; 
     background-color: var(--color-01);
-    border-bottom: 2px solid var(--color-02); /* Les bordures restent souvent en px */
-    position: sticky;
-    top: 0; /* Petit bonus : indispensable pour que le "sticky" fonctionne bien ! */
-    z-index: 1000; /* Assure que la nav reste au-dessus de tout le reste quand tu scrolles */
+    border-bottom: 2px solid var(--color-02); 
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 1000; 
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 6.25rem; /* 100px */
-}
-
-.logo-wrapper {
-    width: 6.25rem; 
-    position: relative; 
-    /* Tu peux enlever les display: flex ici, car l'enfant est absolu et n'en tient plus compte */
-}
-
-.logo-nav {
-    position: absolute;
-    height: 6.25rem;
-    
-    /* 1. LA MAGIE DU CENTRAGE HORIZONTAL */
-    left: 50%; /* Pousse le logo à la moitié du conteneur... */
-    transform: translateX(-50%); /* ... et le recule de la moitié de sa propre largeur pour le centrer pile poil ! */
-    
-    /* 2. L'AJUSTEMENT VERTICAL */
-    top: -4rem; /* Pour le descendre un peu. N'hésite pas à tester -1rem, -2rem ou -2.5rem pour trouver la hauteur parfaite. */
+    gap: 6.25rem; 
+    margin: 0;
+    padding: 0;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--color-02);
-    font-size: 1rem; /* 16px */
-    letter-spacing: 0.0625rem; /* 1px */
+    font-size: 1rem; 
+    letter-spacing: 0.0625rem; 
     transition: opacity 0.3s ease;
     font-weight: 400;
 }
@@ -49,36 +36,139 @@ nav {
     color: var(--color-03);
 }
 
+/* Espace au centre de la nav sur PC */
+.spacer {
+    width: 6.25rem; 
+    pointer-events: none;
+}
+
 /* --- LA FLEUR INTERACTIVE --- */
+.logo-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    z-index: 1005; /* Reste par-dessus tout */
+}
+
 #flower-container {
-    position: fixed; 
-    bottom: 30px;
-    right: 30px; 
-    width: 120px; /* Taille de ta fleur */
-    height: auto;
-    z-index: 1000;
-    /* Important pour que les yeux se positionnent par rapport à la fleur */
-    position: absolute; 
+    position: absolute;
+    height: 6.25rem;
+    left: 50%; 
+    transform: translateX(-50%); 
+    top: -2rem; /* Décalage PC */
 }
 
 #flower-base {
-    width: 100%;
+    width: 120px; 
     display: block;
 }
 
-/* L'image des yeux */
 #flower-eyes {
     position: absolute;
-    width: 30px; /* Taille de ton bloc yeux (à ajuster) */
-    
-    /* Centre les yeux par défaut. 
-       Ajuste le 'top' pour qu'ils tombent pile au bon endroit sur le visage */
+    width: 30px; 
     top: 30px; 
     left: 50%;
-    
-    /* Le translate(-50%, -50%) permet de centrer parfaitement l'image par rapport à son point left/top */
     transform: translate(-50%, -50%);
-    
-    /* Transition douce pour un effet organique (pas trop robotique) */
     transition: transform 0.1s ease-out; 
+}
+
+/* --- BURGER MENU (Caché sur Desktop) --- */
+.burger {
+    display: none;
+    cursor: pointer;
+    z-index: 1010; /* Doit être le plus haut pour refermer le menu ! */
+}
+
+.burger div {
+    width: 28px;
+    height: 3px;
+    background-color: var(--color-02);
+    margin: 6px;
+    transition: all 0.3s ease;
+}
+
+/* --- RESPONSIVE MOBILE --- */
+@media (max-width: 950px) {
+    nav {
+        padding: 1rem 2rem;
+        justify-content: flex-end; /* Aligne le burger à droite */
+    }
+
+    .spacer {
+        display: none; /* Disparaît sur mobile */
+    }
+
+    /* 1. La Fleur Fixée en haut à gauche */
+    .logo-wrapper {
+        position: fixed;
+        top: -30px;
+        left: -30px;
+        width: 150px;
+        transform: none; /* Annule le centrage PC */
+        margin: 0;
+    }
+
+    #flower-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+
+    #flower-base {
+        width: 150px;
+        rotate: -45deg; 
+    }
+
+    #flower-eyes {
+        width: 35px;
+        top: 54px;
+        left: 65px;
+        transform: translate(-50%, -50%);
+    }
+
+    /* 2. Le Burger Fixé en haut à droite */
+    .burger {
+        display: block;
+        position: relative;
+    }
+
+    /* 3. Le Menu Déroulant */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--color-01);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem; 
+        
+        transform: translateX(100%); /* Caché par défaut à droite */
+        transition: transform 0.4s ease-in-out;
+        z-index: 1001; /* En dessous de la fleur et du burger */
+    }
+
+    .nav-links.nav-active {
+        transform: translateX(0); /* Fait apparaître le menu */
+    }
+
+    /* Animation de la croix du burger */
+    .burger.toggle .line1 { transform: rotate(-45deg) translate(-6px, 6px); }
+    .burger.toggle .line2 { opacity: 0; }
+    .burger.toggle .line3 { transform: rotate(45deg) translate(-6px, -6px); }
+}
+
+@keyframes fadeInLink {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
