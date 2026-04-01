@@ -1,14 +1,29 @@
 /* --- BASE (Ordinateur) --- */
 
-.parcours-section {
-    margin: 10em 15%;
+.titre-section {
+    margin: 10em 15% 0 15%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5em; /* 20em était beaucoup trop grand et cassait la mise en page */
 }
 
-.propos-section {
+.big-image-container {
+    display: flex;
+    justify-content: center;
+    margin: 4em 0; /* Ajoute de l'espace au-dessus et en dessous de l'image */
+}
+
+.big-image {
+    width: 100%;
+    max-width: 70vw; /* Bloque la taille à 600px max sur PC */
+    height: auto;
+    /* border-radius: 2%; */
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.project-section {
     margin: 8em 15%;
     display: flex;
     align-items: center;
@@ -16,7 +31,7 @@
 }
 
 /* On regroupe le style des images pour éviter de se répéter */
-.minijojo-image, .college-image {
+.project-image {
     width: 100%;
     max-width: 300px; /* Bloque la taille à 300px max sur PC */
     height: auto;

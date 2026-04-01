@@ -1,0 +1,149 @@
+
+.project-section {
+    margin: 10em 15%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5em; /* 20em était beaucoup trop grand et cassait la mise en page */
+}
+
+/* ========================================================
+    --- GRILLE DES PROJETS (CADRE STRICT MAQUETTE) --- 
+   ======================================================== */
+
+.projects-grid {
+    width: 100%;
+    margin-top: 4rem; 
+    margin-bottom: 6rem;
+    
+    /* LE CADRE EXTÉRIEUR COMPLET (Haut, Bas) */
+    /* Ajoute border-left et border-right ici si tu veux fermer la boîte sur les côtés ! */
+    border-top: 2px solid var(--color-02); 
+    border-bottom: 2px solid var(--color-02); 
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- LIGNE D'UN PROJET --- */
+.project-row {
+    display: flex;
+    width: 100%;
+    min-height: 450px; /* Plus de hauteur pour aérer */
+    border-bottom: 2px solid var(--color-02); 
+}
+
+/* Évite un double trait en bas du dernier projet */
+.project-row:last-child {
+    border-bottom: none;
+}
+
+/* --- COLONNE IMAGE (Gauche) --- */
+.project-image-col {
+    width: 50%; /* 50% EXACT pour que la ligne soit pile au milieu */
+    border-right: 2px solid var(--color-02); /* LA LIGNE VERTICALE */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+    box-sizing: border-box; /* Essentiel pour que la bordure ne casse pas les 50% */
+}
+
+.project-img {
+    width: 100%;
+    max-width: 500px; 
+    aspect-ratio: 1 / 1; /* Force le carré parfait de ta maquette */
+    object-fit: cover; 
+    transition: transform 0.3s ease;
+}
+
+.project-row:hover .project-img {
+    transform: scale(1.03); 
+}
+
+/* --- COLONNE INFOS (Droite) --- */
+.project-info-col {
+    width: 50%; /* L'autre 50% exact */
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.project-title {
+    font-size: 6rem; /* 96px */
+    font-weight: 700;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+/* Le décalage exact de ton texte sur la maquette */
+.project-desc-wrapper {
+    flex-grow: 1; /* Remplit l'espace du milieu pour pousser le bouton en bas */
+    display: flex;
+    align-items: center;
+    margin-left: 20%; /* C'est ce paramètre qui décale ton texte vers la droite ! */
+    padding-right: 5%;
+    text-align: justify;
+}
+
+.project-desc-wrapper p {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+/* Le bouton aligné à gauche et poussé vers le bas */
+.project-link {
+    font-weight: 800;
+    text-decoration: none;
+    color: var(--color-02);
+    font-size: 1.5rem;
+    margin-top: auto; /* Force le bouton à se caler tout en bas */
+    display: inline-block;
+
+    text-decoration: underline;
+    text-decoration-color: var(--color-03);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 3px;
+}
+
+/* ========================================================
+    --- RESPONSIVE MOBILE --- 
+   ======================================================== */
+
+@media screen and (max-width: 768px) {
+
+    .project-title { font-size: 4rem; }
+
+    .project-section {
+        flex-direction: column; /* On empile les titres */
+        margin: 5.5em 5%;
+        gap: 2em;
+        text-align: center;
+    }
+
+    .project-row {
+        flex-direction: column; 
+    }
+
+    .project-image-col {
+        width: 100%;
+        border-right: none; /* On casse la ligne centrale sur mobile */
+        border-bottom: 2px solid var(--color-02); /* Devient une séparation horizontale */
+        padding: 2rem;
+    }
+
+    .project-info-col {
+        width: 100%;
+        padding: 2rem;
+        min-height: 350px;
+    }
+
+    .project-desc-wrapper {
+        margin-left: 0; /* On remet le texte à gauche sur mobile */
+        padding-right: 0;
+        margin-top: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}

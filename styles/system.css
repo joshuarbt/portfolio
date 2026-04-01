@@ -249,7 +249,7 @@ body {
     height: 0.70em; /* Hauteur relative (pour faire un carré parfait) */
     
     /* Mets ici le chemin vers l'image que tu veux afficher ! */
-    background-image: url('../assets/projets/3d-voiture.webp'); 
+    background-image: url('../assets/projets/accueil.gif'); 
     background-size: cover;
     background-position: center;
     

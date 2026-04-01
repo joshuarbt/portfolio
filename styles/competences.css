@@ -19,6 +19,11 @@
     gap: 15px; 
 }
 
+.container-comp a{
+    text-decoration: none; /* Supprime le soulignement par défaut du lien */
+    color: inherit; /* Hérite de la couleur du texte environnant */
+}
+
 
 
 
