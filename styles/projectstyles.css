@@ -1,74 +1,266 @@
-/* --- BASE (Ordinateur) --- */
-
-.titre-section {
-    margin: 10em 15% 0 15%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5em; /* 20em était beaucoup trop grand et cassait la mise en page */
+/* ========================================================
+   --- VARIABLES & RESET (Inchangé) --- 
+   ======================================================== */
+:root {
+    --bg-color: var(--color-01);
+    --text-color: var(--color-02);
+    --font-main: 'Space Grotesk', sans-serif;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow-x: hidden; /* Sécurité pour les animations */
+    cursor: none; /* Pour ton curseur custom */
+}
+
+.container {
+    width: 100%;
+    max-width: 1600px; /* Limite pour les très grands écrans */
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ========================================================
+   --- TYPOGRAPHIE FLUIDE (Taille ajustée) --- 
+   ======================================================== */
+h1 {
+    /* Avant : clamp(5rem, 15vw, 12rem) */
+    /* Maintenant : Minimum 4rem, idéalement 10% de l'écran, Maximum 8.5rem */
+    font-size: clamp(4rem, 10vw, 8.5rem); 
+    font-weight: 800;
+    line-height: 0.95; /* On l'aère un tout petit peu pour compenser la taille */
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+}
+.h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1;
+    margin: 0 0 2rem 0;
+    text-transform: uppercase;
+}
+
+.h3, p {
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0;
+}
+
+/* ========================================================
+   --- COMPOSITION : EN-TÊTE (Intro) --- 
+   ======================================================== */
+.project-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    
+    /* L'astuce est ici : on force un énorme espace en HAUT (12rem) 
+       pour esquiver la navbar, et un espace normal en BAS (4rem) 
+       pour ne pas coller à l'image */
+    padding: 12rem 5% 10rem 5%; 
+    gap: 2rem;
+}
+/* Laisser le H1 dans sa colonne (gauche) */
+
+.project-subtitle {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    font-weight: 500;
+    line-height: 1.4; /* Améliore la lisibilité */
+    max-width: 450px;
+    /* On augmente le margin-top pour qu'il ne soit pas "collé" en haut de sa colonne */
+    margin-top: clamp(3rem, 8vh, 6rem); 
+    justify-self: end;
+}
+/* ========================================================
+   --- COMPOSITION : GRANDE IMAGE --- 
+   ======================================================== */
 .big-image-container {
-    display: flex;
-    justify-content: center;
-    margin: 4em 0; /* Ajoute de l'espace au-dessus et en dessous de l'image */
+    width: 100%;
+    margin-top: 2rem; /* Ajoute un petit espace au-dessus de l'image */
+    margin-bottom: clamp(4rem, 10vh, 10rem);
+    padding-left: 5%;
 }
 
 .big-image {
     width: 100%;
-    max-width: 70vw; /* Bloque la taille à 600px max sur PC */
-    height: auto;
-    /* border-radius: 2%; */
+    height: 70vh; /* Hauteur fixe par rapport à l'écran */
     object-fit: cover;
-    aspect-ratio: 16 / 9;
 }
 
-.project-section {
-    margin: 8em 15%;
-    display: flex;
+/* ========================================================
+   --- COMPOSITION : SECTIONS DÉTAILLÉES (Grid asymétrique) --- 
+   ======================================================== */
+.detail-section {
+    display: grid;
+    /* Création d'une grille asymétrique : Image plus large que le texte */
+    grid-template-columns: 1.2fr 0.8fr; 
     align-items: center;
-    gap: 50px;
+    gap: clamp(2rem, 5vw, 6rem);
+    padding: clamp(4rem, 10vh, 10rem) 5%;
 }
 
-/* On regroupe le style des images pour éviter de se répéter */
-.project-image {
-    width: 100%;
-    max-width: 300px; /* Bloque la taille à 300px max sur PC */
-    height: auto;
-    /* border-radius: 2%; */
-    object-fit: cover;
+/* Inversion de la grille pour les sections 'reverse' (Text Left, Image Right) */
+.detail-section.reverse {
+    grid-template-columns: 0.8fr 1.2fr;
+}
+
+.detail-text {
+    /* Organisation interne du texte */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail-text h2 br {
+    display: none; /* Géré par le responsive */
 }
 
 .bloc-text {
-    text-align: justify;
+    max-width: 500px; /* Empêche les lignes trop longues à lire */
 }
 
-
-/* --- RESPONSIVE TABLETTE --- */
-@media (max-width: 1024px) {
-    .parcours-section, .propos-section {
-        margin: 8em 10%; /* On réduit les marges latérales */
-    }
+.detail-image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
+.detail-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10; /* Format horizontal constant */
+    object-fit: cover;
+}
 
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 768px) {
-    .parcours-section {
-        flex-direction: column; /* On empile les titres */
-        margin: 4em 5%;
-        gap: 2em;
-        text-align: center;
-    }
+/* ========================================================
+   --- RESPONSIVE MOBILE (Inchangé dans le HTML, amélioré ici) --- 
+   ======================================================== */
+@media screen and (max-width: 768px) {
+    /* Masquer le curseur sur mobile (Sécurité CSS si le JS échoue) */
+    body, * { cursor: auto !important; }
+    .custom-cursor, .cursor-trail { display: none !important; }
 
-    .propos-section {
-        flex-direction: column; /* Le texte et l'image passent l'un sous l'autre */
-        margin: 7em 5%;
+    /* Tout passer sur 1 seule colonne */
+    .project-header, .detail-section, .detail-section.reverse {
+        grid-template-columns: 1fr;
+        padding: 4rem 20px;
         gap: 2rem;
-        text-align: center; /* Centre le titre */
     }
 
-    .bloc-text {
-        text-align: left; /* Le justifié sur mobile est à éviter (crée des espaces vides) */
+    .project-subtitle {
+        justify-self: start;
+        margin-top: 1rem;
     }
+
+    .big-image-container {
+        padding-left: 0; /* Image full width sur mobile */
+    }
+    
+    .big-image {
+        height: 50vh;
+    }
+
+    /* Forcer l'ordre : Titre puis Texte */
+    .detail-text h2 {
+        br { display: block; } /* Rétablit le saut de ligne si besoin */
+    }
+
+    /* Sur mobile, on remet l'image AVANT le texte pour la logique visuelle */
+    .detail-section {
+        display: flex;
+        flex-direction: column-reverse; 
+    }
+    
+    .detail-section.reverse {
+        flex-direction: column; /* Inversé de inversé = normal */
+    }
+}
+
+
+/* ========================================================
+   --- NOUVEAUX BLOCS : GALERIE IMAGES --- 
+   ======================================================== */
+.gallery-section {
+    margin: clamp(4rem, 10vh, 10rem) 5%;
+}
+
+.gallery-grid {
+    display: grid;
+    /* Crée 3 colonnes de taille égale */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: clamp(1rem, 3vw, 3rem);
+}
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 4 / 5; /* Format portrait élégant pour la grille */
+    object-fit: cover;
+}
+
+/* ========================================================
+   --- NOUVEAUX BLOCS : VIDÉO YOUTUBE --- 
+   ======================================================== */
+.video-section {
+    margin: clamp(4rem, 10vh, 10rem) 5%;
+}
+
+.video-section .h2 {
+    margin-bottom: 3rem;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Force le format rectangulaire vidéo */
+    background-color: #000; /* Fond noir pendant le chargement */
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ========================================================
+   --- NOUVEAUX BLOCS : MULTI-TEXTES --- 
+   ======================================================== */
+.multi-text-section {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Asymétrie typique de ton design */
+    margin: clamp(4rem, 10vh, 10rem) 5%;
+    gap: 4rem;
+    align-items: start;
+}
+
+.multi-text-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 colonnes de texte */
+    gap: 3rem;
+}
+
+/* ========================================================
+   --- RESPONSIVE DES NOUVEAUX BLOCS --- 
+   ======================================================== */
+@media screen and (max-width: 1024px) {
+    /* Sur tablette, la galerie passe sur 2 colonnes */
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    
+    /* Le multi-texte passe sur 1 colonne globale */
+    .multi-text-section { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+@media screen and (max-width: 768px) {
+    /* Sur téléphone, tout passe sur 1 seule colonne */
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-image { aspect-ratio: 16 / 9; } /* L'image devient horizontale sur mobile */
+    .multi-text-content { grid-template-columns: 1fr; gap: 1.5rem; }
 }
