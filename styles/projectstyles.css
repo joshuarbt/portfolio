@@ -63,8 +63,8 @@ h1 {
     /* L'astuce est ici : on force un énorme espace en HAUT (12rem) 
        pour esquiver la navbar, et un espace normal en BAS (4rem) 
        pour ne pas coller à l'image */
-    padding: 12rem 5% 10rem 5%; 
-    gap: 2rem;
+    padding: 12rem 5% 8rem 5%; 
+    gap: 1rem;
 }
 /* Laisser le H1 dans sa colonne (gauche) */
 
@@ -72,7 +72,7 @@ h1 {
     font-size: clamp(1.25rem, 2vw, 2rem);
     font-weight: 500;
     line-height: 1.4; /* Améliore la lisibilité */
-    max-width: 450px;
+    max-width: 800px;
     /* On augmente le margin-top pour qu'il ne soit pas "collé" en haut de sa colonne */
     margin-top: clamp(3rem, 8vh, 6rem); 
     justify-self: end;

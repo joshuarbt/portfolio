@@ -114,7 +114,7 @@
 
 @media screen and (max-width: 768px) {
 
-    .project-title { font-size: 4rem; }
+    .project-title { font-size: 3rem; }
 
     .project-section {
         flex-direction: column; /* On empile les titres */
