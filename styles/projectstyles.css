@@ -63,7 +63,7 @@ h1 {
     /* L'astuce est ici : on force un énorme espace en HAUT (12rem) 
        pour esquiver la navbar, et un espace normal en BAS (4rem) 
        pour ne pas coller à l'image */
-    padding: 12rem 5% 8rem 5%; 
+    padding: 12rem 5% 10rem 5%; 
     gap: 1rem;
 }
 /* Laisser le H1 dans sa colonne (gauche) */
@@ -263,4 +263,62 @@ h1 {
     .gallery-grid { grid-template-columns: 1fr; }
     .gallery-image { aspect-ratio: 16 / 9; } /* L'image devient horizontale sur mobile */
     .multi-text-content { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+
+/* ========================================================
+   --- LISTES ÉDITORIALES --- 
+   ======================================================== */
+
+.editorial-list {
+    list-style-type: none; /* Enlève les puces (ronds) par défaut du navigateur */
+    padding-left: 0;
+    margin-top: 2.5rem; /* Éloigne un peu la liste du paragraphe au-dessus */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Ajoute un bel espace entre chaque point */
+    max-width: 500px; /* Aligné sur la largeur de tes .bloc-text */
+}
+
+.editorial-list li {
+    font-size: clamp(1rem, 1.2vw, 1.25rem); /* Garde la même typo que tes textes */
+    line-height: 1.6;
+    font-weight: 400;
+    padding-left: 2rem; /* Décale le texte pour laisser la place au tiret */
+    position: relative;
+}
+
+/* On recrée une puce sur mesure (un grand tiret) */
+.editorial-list li::before {
+    content: '—'; /* Tiret cadratin élégant */
+    position: absolute;
+    left: 0;
+    top: -2px; /* Ajuste légèrement la hauteur du tiret */
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+/* Le style des mots-clés en gras (ex: "TYPOGRAPHIE :") */
+.editorial-list li strong {
+    font-weight: 800;
+    text-transform: uppercase; /* Force les majuscules pour le côté brutaliste */
+    font-size: 0.9em;
+    letter-spacing: 0.05em; /* Aère un peu les lettres du gras */
+    display: inline-block;
+    margin-bottom: 0.2rem;
+}
+
+.strong{
+    font-weight: 800;
+}
+
+.cyber-section {
+    display: flex;
+    justify-content: center;
+}
+
+.cyber-image {
+    width: 70%;
+    height: auto;
+    margin-top: 2rem;
 }
