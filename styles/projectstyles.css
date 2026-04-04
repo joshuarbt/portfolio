@@ -81,7 +81,7 @@ h1 {
    --- COMPOSITION : GRANDE IMAGE --- 
    ======================================================== */
 .big-image-container {
-    width: 100%;
+    width: 90%;
     margin-top: 2rem; /* Ajoute un petit espace au-dessus de l'image */
     margin-bottom: clamp(4rem, 10vh, 10rem);
     padding-left: 5%;
@@ -319,6 +319,40 @@ h1 {
 
 .cyber-image {
     width: 70%;
-    height: auto;
+    height: fit-content;
     margin-top: 2rem;
+}
+
+.affiche-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+}
+
+/* ========================================================
+   --- IMAGE LONGUE (SCROLL INFINI) --- 
+   ======================================================== */
+.cyber-section {
+    display: flex;
+    justify-content: center;
+    margin: clamp(4rem, 10vh, 10rem) 0; /* Ajoute de l'air en haut et en bas */
+}
+
+.cyber-image {
+    width: 70%; /* Prend 70% de l'écran sur PC */
+}
+
+.long-image {
+    width: 100%; /* Prend 100% de sa boîte (.cyber-image) */
+    height: auto; /* Magie : calcule la hauteur automatiquement pour ne rien couper ! */
+    display: block; /* Enlève la petite marge fantôme sous les images */
+    object-fit: contain;
+}
+
+/* --- Responsive pour l'image longue --- */
+@media screen and (max-width: 768px) {
+    .cyber-image {
+        width: 95%; /* Sur téléphone, 70% ce serait trop petit pour lire. On passe à 95% */
+    }
 }
