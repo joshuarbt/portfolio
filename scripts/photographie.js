@@ -1,20 +1,29 @@
 const fresco = document.getElementById('fresco');
 const viewport = document.getElementById('viewport');
-const loadingScreen = document.getElementById('loading-screen'); // On récupère l'écran de chargement
+const loadingScreen = document.getElementById('loading-screen'); 
 
 let targetScale = 0.2;
 let targetLeft = 0;
 let targetTop = 0;
 let isZoomReady = false;
 
+// --- AJOUT : Variables pour mémoriser le centre exact ---
+let centerLeft = 0;
+let centerTop = 0;
+
 window.addEventListener('load', () => {
-    // 1. La page est chargée, on prépare les coordonnées de la fresque
     const style = window.getComputedStyle(fresco);
     targetLeft = parseFloat(style.left);
     targetTop = parseFloat(style.top);
 
+    // --- AJOUT : On sauvegarde la position initiale "Maison" ---
+    centerLeft = targetLeft;
+    centerTop = targetTop;
+
     // 2. On fait disparaître l'écran de chargement en fondu
     loadingScreen.style.opacity = '0';
+    
+    // ... (Le reste du code de ton window.addEventListener('load') ne change pas) ...
 
     const backHomeLogo = document.getElementById('back-home-flower');
 
@@ -92,25 +101,46 @@ viewport.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (!isZoomReady) return;
 
-    const zoomIntensity = 0.05;
-    let previousScale = targetScale;
+    // ========================================================
+    // --- LA MAGIE : DÉTECTION SOURIS vs TRACKPAD ---
+    // Une vraie souris avec des "crans" envoie des valeurs fortes (>=40), 
+    // des nombres entiers (sans virgule), et pas de mouvement X.
+    // ========================================================
+    const isNotchedMouse = Math.abs(e.deltaY) >= 40 && e.deltaX === 0 && (e.deltaY % 1 === 0);
 
-    if (e.deltaY < 0) targetScale += zoomIntensity;
-    else targetScale -= zoomIntensity;
+    // 1. ZOOM : Pincement Trackpad (Ctrl) OU Molette souris classique
+    if (e.ctrlKey || isNotchedMouse) {
+        
+        // Comme une souris envoie "100" et un trackpad "2", 
+        // on adapte la force du zoom pour que la souris ne zoome pas 50x trop vite !
+        const zoomIntensity = isNotchedMouse ? 0.001 : 0.005; 
+        
+        let previousScale = targetScale;
 
-    targetScale = Math.min(Math.max(0.2, targetScale), 4);
-    if (previousScale === targetScale) return;
+        targetScale -= e.deltaY * zoomIntensity;
+        targetScale = Math.min(Math.max(0.2, targetScale), 4);
+        
+        if (previousScale === targetScale) return;
 
-    const originX = 2500;
-    const originY = 2500;
-    const scaleRatio = targetScale / previousScale;
+        const originX = 2500;
+        const originY = 2500;
+        const scaleRatio = targetScale / previousScale;
 
-    targetLeft = e.clientX - originX - (e.clientX - targetLeft - originX) * scaleRatio;
-    targetTop = e.clientY - originY - (e.clientY - targetTop - originY) * scaleRatio;
+        targetLeft = e.clientX - originX - (e.clientX - targetLeft - originX) * scaleRatio;
+        targetTop = e.clientY - originY - (e.clientY - targetTop - originY) * scaleRatio;
+    } 
+    // 2. DÉPLACEMENT : Glissement 2 doigts Trackpad (sans Ctrl)
+    else {
+        const panSpeed = 1.2; 
+        targetLeft -= e.deltaX * panSpeed;
+        targetTop -= e.deltaY * panSpeed;
+    }
 
+    // Application fluide des transformations
     fresco.style.left = `${targetLeft}px`;
     fresco.style.top = `${targetTop}px`;
     fresco.style.transform = `scale(${targetScale})`;
+
 }, { passive: false });
 
 // --- ANIMATION DES YEUX (Bouton Accueil) ---
@@ -321,3 +351,35 @@ function focusOnPhoto(photo) {
     fresco.style.left = `${targetLeft}px`;
     fresco.style.top = `${targetTop}px`;
 }
+
+// ========================================================
+// --- RACCOURCI CLAVIER : ESPACE POUR CENTRER --- 
+// ========================================================
+
+window.addEventListener('keydown', (e) => {
+    // On vérifie que c'est bien la touche Espace et que l'intro de la page est finie
+    if (e.code === 'Space' && isZoomReady) {
+        
+        e.preventDefault(); // Sécurité : Empêche la page de scroller vers le bas
+
+        // 1. On remet les valeurs "Maison"
+        targetScale = 1; // Zoom par défaut
+        targetLeft = centerLeft;
+        targetTop = centerTop;
+
+        // 2. On applique une belle transition fluide et cinématographique (0.8s) 
+        // comme on l'avait fait pour le focus sur les photos
+        fresco.style.transition = 'transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), left 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s cubic-bezier(0.25, 1, 0.5, 1)';
+        
+        // 3. On lance le déplacement
+        fresco.style.left = `${targetLeft}px`;
+        fresco.style.top = `${targetTop}px`;
+        fresco.style.transform = `scale(${targetScale})`;
+
+        // 4. On remet la petite transition ultra-rapide (0.1s) après le voyage 
+        // pour que la navigation à la souris redevienne réactive
+        setTimeout(() => {
+            fresco.style.transition = 'transform 0.1s ease-out, left 0.1s ease-out, top 0.1s ease-out';
+        }, 800); // 800ms correspond aux 0.8s de la transition
+    }
+});
