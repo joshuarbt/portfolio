@@ -101,46 +101,25 @@ viewport.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (!isZoomReady) return;
 
-    // ========================================================
-    // --- LA MAGIE : DÉTECTION SOURIS vs TRACKPAD ---
-    // Une vraie souris avec des "crans" envoie des valeurs fortes (>=40), 
-    // des nombres entiers (sans virgule), et pas de mouvement X.
-    // ========================================================
-    const isNotchedMouse = Math.abs(e.deltaY) >= 40 && e.deltaX === 0 && (e.deltaY % 1 === 0);
+    const zoomIntensity = 0.05;
+    let previousScale = targetScale;
 
-    // 1. ZOOM : Pincement Trackpad (Ctrl) OU Molette souris classique
-    if (e.ctrlKey || isNotchedMouse) {
-        
-        // Comme une souris envoie "100" et un trackpad "2", 
-        // on adapte la force du zoom pour que la souris ne zoome pas 50x trop vite !
-        const zoomIntensity = isNotchedMouse ? 0.001 : 0.005; 
-        
-        let previousScale = targetScale;
+    if (e.deltaY < 0) targetScale += zoomIntensity;
+    else targetScale -= zoomIntensity;
 
-        targetScale -= e.deltaY * zoomIntensity;
-        targetScale = Math.min(Math.max(0.2, targetScale), 4);
-        
-        if (previousScale === targetScale) return;
+    targetScale = Math.min(Math.max(0.2, targetScale), 4);
+    if (previousScale === targetScale) return;
 
-        const originX = 2500;
-        const originY = 2500;
-        const scaleRatio = targetScale / previousScale;
+    const originX = 2500;
+    const originY = 2500;
+    const scaleRatio = targetScale / previousScale;
 
-        targetLeft = e.clientX - originX - (e.clientX - targetLeft - originX) * scaleRatio;
-        targetTop = e.clientY - originY - (e.clientY - targetTop - originY) * scaleRatio;
-    } 
-    // 2. DÉPLACEMENT : Glissement 2 doigts Trackpad (sans Ctrl)
-    else {
-        const panSpeed = 1.2; 
-        targetLeft -= e.deltaX * panSpeed;
-        targetTop -= e.deltaY * panSpeed;
-    }
+    targetLeft = e.clientX - originX - (e.clientX - targetLeft - originX) * scaleRatio;
+    targetTop = e.clientY - originY - (e.clientY - targetTop - originY) * scaleRatio;
 
-    // Application fluide des transformations
     fresco.style.left = `${targetLeft}px`;
     fresco.style.top = `${targetTop}px`;
     fresco.style.transform = `scale(${targetScale})`;
-
 }, { passive: false });
 
 // --- ANIMATION DES YEUX (Bouton Accueil) ---
