@@ -27,7 +27,7 @@ footer {
     padding-left: 0 !important; /* On force le retrait du décalage dans le footer */
 }
 
-.pages-footer, .contact-footer {
+.pages-footer, .contact-footer, .legal-footer {
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -60,7 +60,7 @@ footer {
         text-align: center;
     }
     
-    .pages-footer, .contact-footer {
+    .pages-footer, .contact-footer, .legal-footer {
         align-items: center;
     }
 }

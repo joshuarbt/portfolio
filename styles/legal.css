@@ -1,0 +1,45 @@
+.legal-section {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 4rem 10% 2rem;
+}
+
+.legal-section h1 {
+    margin-bottom: 2rem;
+}
+
+.legal-section h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 700;
+}
+
+.legal-section p,
+.legal-section li {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+    color: var(--color-02);
+}
+
+.legal-section ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.legal-section a {
+    color: var(--color-03);
+    text-decoration: underline;
+}
+
+.legal-section a:hover {
+    opacity: 0.7;
+}
+
+.legal-placeholder {
+    font-weight: 700;
+    background-color: color-mix(in srgb, var(--color-04) 35%, transparent);
+    padding: 0.1em 0.35em;
+}
